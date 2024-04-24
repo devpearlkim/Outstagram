@@ -1,8 +1,15 @@
-# React + Vite
+# 인스타그램 클론 sns
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### 참고한 강의:
 
-Currently, two official plugins are available:
+https://www.youtube.com/watch?v=RMScMwY2B6Q
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 클론코딩 이유:
+
+시간단축, 프로젝트 개발 흐름 익히기 위해  
+ chakra배움->공통컴포넌트 만드는 시간 단축,
+클론코딩의 단점 보완 위해 기능 변경, 추가, 다른 라이브러리 사용 등 변경예정
+
+### 프로젝트 진행상황:
+
+DAY1: 기본셋업, 에러바운더리 클래스 생성,
