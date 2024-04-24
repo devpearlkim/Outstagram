@@ -1,14 +1,14 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
 import './index.css';
+import React from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import { extendTheme } from '@chakra-ui/react';
 import { mode } from '@chakra-ui/theme-tools';
 import HomePage from './pages/HomePage/HomePage.jsx';
 import AuthPage from './pages/AuthPage/AuthPage.jsx';
-import NotFound from './components/NotFound.jsx';
+import NotFound from './components/common/NotFound';
 const styles = {
   global: (props) => ({
     body: {
