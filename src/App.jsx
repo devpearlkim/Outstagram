@@ -1,4 +1,3 @@
-import { Button } from '@chakra-ui/react';
 import { Outlet } from 'react-router-dom';
 
 function App() {

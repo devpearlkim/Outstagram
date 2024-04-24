@@ -1,5 +1,5 @@
 import { Button } from '@chakra-ui/react';
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class ErrorBoundary extends Component {
