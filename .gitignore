@@ -6,6 +6,8 @@ node_modules/
 jspm_packages/
 .env
 dist
+.env.js
+
 
 # Celebrity configurations
 release/app/dist

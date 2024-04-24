@@ -8,7 +8,7 @@ import { extendTheme } from '@chakra-ui/react';
 import { mode } from '@chakra-ui/theme-tools';
 import HomePage from './pages/HomePage/HomePage.jsx';
 import AuthPage from './pages/AuthPage/AuthPage.jsx';
-import NotFound from './components/common/NotFound';
+import NotFound from './components/common/NotFound.jsx';
 const styles = {
   global: (props) => ({
     body: {
