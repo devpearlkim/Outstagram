@@ -7,9 +7,9 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import { color } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { googleLogin } from '../../firebase/firebase';
 
 const focusInput = (ref) => {
   if (ref.current) {
@@ -123,7 +123,12 @@ export default function AuthForm() {
             alignItems={'center'}
             cursor={'pointer'}
           >
-            <Image src='/google.png' alt='Google logo' w={5} />
+            <Image
+              src='/google.png'
+              alt='Google logo'
+              w={5}
+              onClick={googleLogin}
+            />
             <Text mx={2} color={'blue.500'}>
               Log in with Google
             </Text>
