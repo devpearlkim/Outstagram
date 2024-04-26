@@ -1,5 +1,6 @@
 import { Button, Input } from '@chakra-ui/react';
 import { useRef, useState } from 'react';
+import { updateFormData } from '../../util/form';
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -9,10 +10,8 @@ export default function Login() {
   });
 
   const onChangeInput = (e) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [e.target.name]: e.target.value,
-    }));
+    const { name, value } = e.target;
+    setFormData((prevFormData) => updateFormData(prevFormData, name, value));
   };
 
   const emailInputRef = useRef(null);
@@ -26,6 +25,7 @@ export default function Login() {
         name='email'
         value={formData.email}
         onChange={onChangeInput}
+        size={'sm'}
         ref={emailInputRef}
       />
       <Input
@@ -35,6 +35,7 @@ export default function Login() {
         name='password'
         value={formData.password}
         onChange={onChangeInput}
+        size={'sm'}
         ref={pwInputRef}
       />
       <Button w={'full'} colorScheme='blue' size={'sm'} fontSize={14}>

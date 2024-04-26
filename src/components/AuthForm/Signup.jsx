@@ -1,6 +1,7 @@
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Button, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
 import { useRef, useState } from 'react';
+import { updateFormData } from '../../util/form';
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -10,10 +11,8 @@ export default function Signup() {
   });
 
   const onChangeInput = (e) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [e.target.name]: e.target.value,
-    }));
+    const { name, value } = e.target;
+    setFormData((prevFormData) => updateFormData(prevFormData, name, value));
   };
 
   const [showPassword, setShowPassword] = useState(false);
