@@ -19,3 +19,11 @@ DAY1:
 - 에러바운더리 클래스
 - AuthForm CSS
 - AuthForm 제출시 빈 필드 값에 focus
+- 이메일인증 nodemailer 실패  
+  (이메일 인증 부분에서 App Password발급받지 못해 실패했다. 테스트어카운트로 전송 확인, req.body에 오는 값까지 확인, 추후 nodemailer에서도 소개한 OAuth2로 인증을 보완해 시도해야한다.)
+
+DAY3:
+
+- 파이어베이스 셋업
+- 파이어베이스 구글로그인
+- AuthForm 컴포넌트 분리
