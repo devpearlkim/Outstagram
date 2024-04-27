@@ -8,10 +8,8 @@ import useSignupWithEmail from '../../hooks/useSignupWithEmail';
 import useShowToast from '../../hooks/useShowToast';
 
 export default function Signup() {
-  const nav = useNavigate();
   const { signUpWithEmail, loading, error } = useSignupWithEmail();
   const showToast = useShowToast();
-  console.log(loading);
   const [formData, setFormData] = useState({
     email: '',
     password: '',

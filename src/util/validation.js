@@ -14,8 +14,6 @@ export const checkUsernameExists = async (username) => {
       where('username', '==', username)
     );
     const querySnapshot = await getDocs(q);
-    console.log('checkUsernameExists');
-    console.log('querySnapshot', querySnapshot);
 
     return !querySnapshot.empty;
   } catch (error) {

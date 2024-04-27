@@ -7,29 +7,6 @@ import GoogleAuth from './GoogleAuth';
 export default function AuthForm() {
   const [isLogin, setIsLogin] = useState(true);
 
-  // const handleAuth = () => {
-  //   if (!formData.email) {
-  //     alert('Please fill all the fields');
-  //     focusInput(emailInputRef);
-  //     return;
-  //   }
-
-  //   if (!formData.password) {
-  //     alert('Please fill all the fields');
-  //     focusInput(pwInputRef);
-  //     return;
-  //   }
-
-  //   if (!isLogin && !formData.confirmPassword) {
-  //     alert('Please fill all the fields');
-  //     focusInput(cpwInputRef);
-  //     return;
-  //   }
-
-  //   // NOTE 로그인, 회원가입 로직
-  //   nav('/');
-  // };
-
   return (
     <>
       <Box border={'1px solid gray'} borderRadius={4} padding={5}>
