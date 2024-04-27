@@ -27,3 +27,9 @@ DAY3:
 - 파이어베이스 셋업
 - 파이어베이스 구글로그인
 - AuthForm 컴포넌트 분리
+
+DAY4:
+
+- 회원가입 구현(with useSignupEmail.js using firebase)
+- 로그인, 로그아웃 구현전 Sidebar, Homepage css
+- zustand 셋업
