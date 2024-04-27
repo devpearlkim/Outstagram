@@ -4,40 +4,8 @@ const PASSWORD = process.env.PASSWORD;
 const Mailgen = require('mailgen');
 
 // FIXME OAuth2 설정 필요
-// NOTE testAccount로 메일 발송
-// const signup = async (req, res) => {
-//   let testAccount = await nodemailer.createTestAccount();
-
-//   const transporter = nodemailer.createTransport({
-//     host: 'smtp.ethereal.email',
-//     port: 587,
-//     secure: false, // Use `true` for port 465, `false` for all other ports
-//     auth: {
-//       user: 'maddison53@ethereal.email',
-//       pass: 'jn7jnAPss4f63QBp6D',
-//     },
-//   });
-
-//   const message = {
-//     from: '"Maddison Foo Koch 👻" <maddison53@ethereal.email>', // sender address
-//     to: 'bar@example.com, baz@example.com', // list of receivers
-//     subject: 'Hello ✔', // Subject line
-//     text: 'Hello world?', // plain text body
-//     html: '<b>Hello world?</b>', // html body
-//   };
-
-//   transporter.sendMail(message).then(() => {
-//     return res
-//       .status(201)
-//       .json({ msg: 'You got mail' })
-//       .catch((error) => {
-//         return res.status(500).json({ error });
-//       });
-//   });
-// };
 
 const signup = async (req, res) => {
-  console.log(req.body);
   const { userEmail } = req.body;
 
   let config = {
