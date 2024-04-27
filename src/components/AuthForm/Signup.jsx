@@ -69,7 +69,7 @@ export default function Signup() {
     }
     try {
       await signUpWithEmail(formData);
-    } catch {
+    } catch (error) {
       showToast('Error', error, 'error');
     }
   };
