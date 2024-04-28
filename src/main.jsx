@@ -9,6 +9,7 @@ import { mode } from '@chakra-ui/theme-tools';
 import HomePage from './pages/HomePage/HomePage.jsx';
 import AuthPage from './pages/AuthPage/AuthPage.jsx';
 import NotFound from './components/common/NotFound.jsx';
+import ProfilePage from './pages/ProfilePage/ProfilePage.jsx';
 const styles = {
   global: (props) => ({
     body: {
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: '/auth', element: <AuthPage /> },
+      { path: '/:username', element: <ProfilePage /> },
     ],
   },
 ]);

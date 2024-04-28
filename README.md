@@ -33,3 +33,4 @@ DAY4:
 - 회원가입 구현(with useSignupEmail.js using firebase)
 - 로그인, 로그아웃 구현전 Sidebar, Homepage css
 - zustand 셋업
+- amplify 배포
