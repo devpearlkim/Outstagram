@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <Tooltip
       hasArrow
-      label={'Profile'}
+      label={'Home'}
       placement='right'
       ml={1}
       openDelay={500}

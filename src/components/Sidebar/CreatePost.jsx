@@ -6,7 +6,7 @@ const CreatePost = () => {
   return (
     <Tooltip
       hasArrow
-      label={'Profile'}
+      label={'Create Post'}
       placement='right'
       ml={1}
       openDelay={500}
