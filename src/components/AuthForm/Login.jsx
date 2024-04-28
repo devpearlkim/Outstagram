@@ -1,12 +1,13 @@
 import { Button, Input } from '@chakra-ui/react';
 import { useRef, useState } from 'react';
 import { updateFormData } from '../../util/form';
+import useLogin from '../../hooks/useLogin';
 
 export default function Login() {
+  const { signIn, loading } = useLogin();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    confirmPassword: '',
   });
 
   const onChangeInput = (e) => {
@@ -16,6 +17,11 @@ export default function Login() {
 
   const emailInputRef = useRef(null);
   const pwInputRef = useRef(null);
+
+  const handleLogin = () => {
+    signIn(formData);
+  };
+
   return (
     <>
       <Input
@@ -38,7 +44,14 @@ export default function Login() {
         size={'sm'}
         ref={pwInputRef}
       />
-      <Button w={'full'} colorScheme='blue' size={'sm'} fontSize={14}>
+      <Button
+        w={'full'}
+        colorScheme='blue'
+        size={'sm'}
+        fontSize={14}
+        onClick={handleLogin}
+        isLoading={loading}
+      >
         Log in
       </Button>
     </>
