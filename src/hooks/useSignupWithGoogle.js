@@ -14,7 +14,7 @@ export default function useSignupWithGoogle() {
       const { user } = result;
       let userExists = false;
 
-      if (user) {
+      if (!user) {
         setError('구글로그인 실패, 잠시후 다시 시도해주세요');
         return;
       }
