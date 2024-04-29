@@ -8,6 +8,7 @@ export default function SuggestedHeader() {
     logout();
   };
   const authUser = useAuthStore((state) => state.user);
+  if (!authUser) return null;
 
   return (
     <Flex justifyContent={'space-between'} alignItems={'center'} w={'full'}>

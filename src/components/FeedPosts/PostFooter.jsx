@@ -35,7 +35,7 @@ export default function PostFooter({ username }) {
       </Text>
       <Text fontSize={'sm'} fontWeight={700}>
         {username}{' '}
-        <Text as={'sapn'} fontWeight={400}>
+        <Text as={'span'} fontWeight={400}>
           날씨 좋다
         </Text>
       </Text>
