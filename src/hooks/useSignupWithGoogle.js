@@ -1,23 +1,42 @@
 import { signInWithPopup } from 'firebase/auth';
 import { useState } from 'react';
 import { auth, firestore, provider } from '../firebase/firebase';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, getDocs } from 'firebase/firestore';
 import { useAuthStore } from '../store/authStore';
-import useShowToast from './useShowToast';
 
 export default function useSignupWithGoogle() {
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const loginUser = useAuthStore((state) => state.login);
-  const showToast = useShowToast();
 
   const signupWithGoogle = async () => {
     try {
-      setLoading(true);
       const result = await signInWithPopup(auth, provider);
       const { user } = result;
+      let userExists = false;
 
-      console.log(user);
+      if (user) {
+        setError('구글로그인 실패, 잠시후 다시 시도해주세요');
+        return;
+      }
+
+      // 유저가 이미 DB에 있는지 확인
+      const docSnap = await getDocs(
+        collection(firestore, 'users', 'userId', user.uid)
+      );
+      docSnap.forEach((doc) => {
+        const userData = doc.data();
+        if (userData.email === user.email) {
+          userExists = true;
+          localStorage.setItem('user-info', JSON.stringify(userData));
+          loginUser(userData);
+        }
+      });
+
+      // user가 DB에 있으면 추가로 저장하지 않음
+      if (userExists) {
+        return;
+      }
+
       const userDoc = {
         uid: user.uid,
         email: user.email,
@@ -34,9 +53,9 @@ export default function useSignupWithGoogle() {
       loginUser(userDoc);
     } catch (err) {
       console.error(err);
-    } finally {
-      setLoading(false);
+      setError(err.message);
     }
   };
-  return { signupWithGoogle, loading, error };
+
+  return { signupWithGoogle, error };
 }

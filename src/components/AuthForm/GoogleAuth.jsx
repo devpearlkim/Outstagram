@@ -1,11 +1,18 @@
 import { Flex, Image, Text } from '@chakra-ui/react';
 import { googleLogin } from '../../firebase/firebase';
 import useSignupWithGoogle from '../../hooks/useSignupWithGoogle';
+import useShowToast from '../../hooks/useShowToast';
 
 export default function GoogleAuth({ prefix }) {
-  const { signupWithGoogle, loading, error } = useSignupWithGoogle();
-  const handleSignupWithGoogle = () => {
-    signupWithGoogle();
+  const { signupWithGoogle, error } = useSignupWithGoogle();
+  const showToast = useShowToast();
+
+  const handleSignupWithGoogle = async () => {
+    try {
+      await signupWithGoogle();
+    } catch {
+      showToast('Error', error, 'error');
+    }
   };
   return (
     <>
