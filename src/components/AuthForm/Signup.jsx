@@ -69,8 +69,12 @@ export default function Signup() {
     }
     try {
       await signUpWithEmail(formData);
-    } catch (error) {
-      showToast('Error', error, 'error');
+    } catch (err) {
+      if (error) {
+        showToast('Error', error, 'error');
+      } else {
+        showToast('Error', err.code, 'error');
+      }
     }
   };
 

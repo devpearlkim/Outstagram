@@ -41,6 +41,7 @@ export default function useSignupWithEmail() {
       } else {
         setError('회원가입 실패, 잠시 후 시도해주세요.');
       }
+      throw err;
     } finally {
       setLoading(false);
     }
