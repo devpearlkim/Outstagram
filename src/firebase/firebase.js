@@ -38,4 +38,4 @@ export async function googleLogin() {
     .catch(console.error);
 }
 
-export { firestore, auth };
+export { firestore, auth, provider };

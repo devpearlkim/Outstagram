@@ -5,7 +5,7 @@ import { useAuthStore } from '../../store/authStore';
 import Navbar from '../../components/Navbar/Navbar';
 
 export default function PageLayout({ children }) {
-  const pathname = useLocation();
+  const { pathname } = useLocation();
   const user = useAuthStore((state) => state.user);
   const renderSidebar = pathname !== '/auth' && user;
   const renderNavbar = pathname !== '/auth' && !user;
