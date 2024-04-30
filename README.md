@@ -50,3 +50,4 @@ DAY6:
 DAY7:
 
 - 프로필페이지 posts, post modal css
+- firebase collection사용 부분 document로 변경
