@@ -2,7 +2,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import useShowToast from './useShowToast';
 import { auth, firestore } from '../firebase/firebase';
 import { useState } from 'react';
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { useAuthStore } from '../store/authStore';
 
 function useLogin() {
@@ -22,14 +22,11 @@ function useLogin() {
         password
       );
       if (userCredential) {
-        const docSnap = await getDocs(
-          collection(firestore, 'users', 'userId', userCredential.user.uid)
-        );
-        docSnap.forEach((doc) => {
-          const userData = doc.data();
-          localStorage.setItem('user-info', JSON.stringify(userData));
-          loginUser(userData);
-        });
+        console.log('userCredential: ', userCredential);
+        const docRef = doc(firestore, 'users', userCredential.user.uid);
+        const docSnap = await getDoc(docRef);
+        localStorage.setItem('user-info', JSON.stringify(docSnap.data()));
+        loginUser(docSnap.data());
       }
     } catch (err) {
       console.error(err);

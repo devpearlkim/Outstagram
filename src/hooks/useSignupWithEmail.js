@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import { auth, firestore } from '../firebase/firebase';
-import { addDoc, collection } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { useAuthStore } from '../store/authStore';
 
 export default function useSignupWithEmail() {
@@ -30,8 +30,7 @@ export default function useSignupWithEmail() {
         createdAt: Date.now(),
       };
 
-      await addDoc(collection(firestore, 'users', 'userId', user.uid), userDoc);
-
+      await setDoc(doc(firestore, 'users', user.uid), userDoc);
       localStorage.setItem('user-info', JSON.stringify(userDoc));
       loginUser(userDoc);
     } catch (err) {
