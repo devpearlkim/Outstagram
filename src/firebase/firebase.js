@@ -1,41 +1,24 @@
 import { initializeApp } from 'firebase/app';
-import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  createUserWithEmailAndPassword,
-} from 'firebase/auth';
-import {
-  addDoc,
-  collection,
-  getDoc,
-  getDocs,
-  getFirestore,
-  query,
-  where,
-} from 'firebase/firestore';
-import { useState } from 'react';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
   databaseURL: import.meta.env.VITE_FIREBASE_DB_URL,
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 const firestore = new getFirestore(app);
+const storage = getStorage(app);
 
 // Google Login
 export async function googleLogin() {
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      const user = result.user;
-    })
-    .catch(console.error);
+  signInWithPopup(auth, provider).catch(console.error);
 }
 
-export { firestore, auth, provider };
+export { firestore, auth, provider, storage };
