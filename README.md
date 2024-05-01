@@ -4,6 +4,10 @@
 
 https://www.pearlstagram.com
 
+### 블로그 포스팅으로 과정 기록:
+
+https://beginner2junior.tistory.com
+
 ### 참고한 강의:
 
 https://www.youtube.com/watch?v=RMScMwY2B6Q
@@ -51,3 +55,12 @@ DAY7:
 
 - 프로필페이지 posts, post modal css
 - firebase collection사용 부분 document로 변경
+
+DAY8:
+
+- 프로필 업데이트 기능 구현
+- chakra-ui의 formController이용, fileReader로 파일 읽어서 setImage, username 중복체크, 유저이미지는 storage에 저장 후 URL을 받아와 firestore에 저장
+
+DAY9:
+
+- 팔로잉 구현

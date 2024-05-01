@@ -6,8 +6,8 @@ import useLogin from '../../hooks/useLogin';
 export default function Login() {
   const { signIn, loading } = useLogin();
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: 'usertest@test.com',
+    password: 'asdf123!',
   });
 
   const onChangeInput = (e) => {
