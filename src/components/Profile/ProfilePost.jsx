@@ -19,9 +19,47 @@ import { FaComment } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import PostFooter from '../FeedPosts/PostFooter';
 import Comment from '../Comment/Comment';
+import { useAuthStore } from '../../store/authStore';
+import { useUserProfileStore } from '../../store/userProfileStore';
+import { useState } from 'react';
+import { usePostStore } from '../../store/postStore';
+import { deleteObject, ref } from 'firebase/storage';
+import { firestore, storage } from '../../firebase/firebase';
+import { arrayRemove, deleteDoc, doc, updateDoc } from 'firebase/firestore';
+import useShowToast from '../../hooks/useShowToast';
 
-const ProfilePost = () => {
+const ProfilePost = ({ post }) => {
+  const showToast = useShowToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { user } = useAuthStore();
+  const { userProfile, deletePost: deletePostCount } = useUserProfileStore();
+  const [isDeleting, setIsDeleting] = useState(false);
+  const { deletePost } = usePostStore();
+
+  const handleDeletePost = async () => {
+    if (!window.confirm('정말 삭제하시겠습니까?')) return;
+    if (isDeleting) return;
+
+    try {
+      const imageRef = ref(storage, `posts/${post.id}`);
+      await deleteObject(imageRef);
+      await deleteDoc(doc(firestore, 'posts', post.id));
+
+      const userRef = doc(firestore, 'users', user.uid);
+      await updateDoc(userRef, {
+        posts: arrayRemove(post.id),
+      });
+
+      deletePost(post.id);
+      deletePostCount(post.id);
+      showToast('Success', '포스트를 삭제했습니다', 'success');
+    } catch (error) {
+      console.error(error);
+      showToast('Error', '포스트 삭제 실패, 잠시 후 시도해주세요', 'error');
+    } finally {
+      setIsDeleting(false);
+    }
+  };
 
   return (
     <>
@@ -52,21 +90,21 @@ const ProfilePost = () => {
             <Flex>
               <AiFillHeart size={20} />
               <Text fontWeight={'bold'} ml={2}>
-                20
+                {post.likes.length}
               </Text>
             </Flex>
 
             <Flex>
               <FaComment size={20} />
               <Text fontWeight={'bold'} ml={2}>
-                10
+                {post.comments.length}
               </Text>
             </Flex>
           </Flex>
         </Flex>
 
         <Image
-          src={'/auth.png'}
+          src={post.imageURL}
           alt='profile post'
           w={'100%'}
           h={'100%'}
@@ -100,7 +138,7 @@ const ProfilePost = () => {
                 justifyContent={'center'}
                 alignItems={'center'}
               >
-                <Image src={'/auth.png'} alt='profile post' />
+                <Image src={post.imageURL} alt='profile post' />
               </Flex>
               <Flex
                 flex={1}
@@ -110,21 +148,28 @@ const ProfilePost = () => {
               >
                 <Flex alignItems={'center'} justifyContent={'space-between'}>
                   <Flex alignItems={'center'} gap={4}>
-                    <Avatar src={'/google.png'} size={'sm'} name='jay' />
+                    <Avatar
+                      src={userProfile.profilePicURL}
+                      size={'sm'}
+                      name='jay'
+                    />
                     <Text fontWeight={'bold'} fontSize={12}>
-                      jay
+                      {userProfile.username}
                     </Text>
                   </Flex>
-
-                  <Button
-                    size={'sm'}
-                    bg={'transparent'}
-                    _hover={{ bg: 'whiteAlpha.300', color: 'red.600' }}
-                    borderRadius={4}
-                    p={1}
-                  >
-                    <MdDelete size={20} cursor='pointer' />
-                  </Button>
+                  {user?.uid === userProfile.uid && (
+                    <Button
+                      size={'sm'}
+                      bg={'transparent'}
+                      _hover={{ bg: 'whiteAlpha.300', color: 'red.600' }}
+                      borderRadius={4}
+                      p={1}
+                      onClick={handleDeletePost}
+                      isLoading={isDeleting}
+                    >
+                      <MdDelete size={20} cursor='pointer' />
+                    </Button>
+                  )}
                 </Flex>
                 <Divider my={4} bg={'gray.500'} />
                 <VStack
