@@ -14,6 +14,8 @@ function useFollowUser(userId) {
   const showToast = useShowToast();
 
   const handleFollowUser = async () => {
+    console.log('매개변수로 받은 userID', userId);
+    console.log('로그인한 userId', user.uid);
     setIsUpdating(true);
 
     try {
@@ -21,10 +23,12 @@ function useFollowUser(userId) {
       const currentUserRef = doc(firestore, 'users', user.uid);
       const userToFollowOrUnfollorRef = doc(firestore, 'users', userId);
 
+      console.log(isFollowing);
       await updateDoc(currentUserRef, {
         following: isFollowing ? arrayRemove(userId) : arrayUnion(userId),
       });
 
+      console.log(isFollowing);
       await updateDoc(userToFollowOrUnfollorRef, {
         followers: isFollowing ? arrayRemove(user.uid) : arrayUnion(user.uid),
       });
@@ -76,7 +80,12 @@ function useFollowUser(userId) {
         setIsFollowing(true);
       }
     } catch (error) {
-      showToast('Error', error.message, 'error');
+      console.error(error);
+      showToast(
+        'Error',
+        `${isFollowing ? 'unfollow' : 'follow'} 실패, 잠시후 시도해주세요`,
+        'error'
+      );
     } finally {
       setIsUpdating(false);
     }

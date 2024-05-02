@@ -17,7 +17,9 @@ export default function ProfileHeader() {
   const { user } = useAuthStore();
   const ownProfile = user && user.username === userProfile.username;
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isUpdating, isFollowing, handleFollowUser } = useFollowUser(user.uid);
+  const { isUpdating, isFollowing, handleFollowUser } = useFollowUser(
+    userProfile?.uid
+  );
 
   return (
     <Flex

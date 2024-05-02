@@ -1,7 +1,10 @@
 import { Avatar, Box, Link, Tooltip } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
+import { useAuthStore } from '../../store/authStore';
 
 const ProfileLink = () => {
+  const { user } = useAuthStore();
+
   return (
     <Tooltip
       hasArrow
@@ -13,7 +16,7 @@ const ProfileLink = () => {
     >
       <Link
         display={'flex'}
-        // to={}
+        to={user?.username}
         as={RouterLink}
         alignItems={'center'}
         gap={4}
@@ -23,7 +26,11 @@ const ProfileLink = () => {
         w={{ base: 10, md: 'full' }}
         justifyContent={{ base: 'center', md: 'flex-start' }}
       >
-        <Avatar size={'sm'} name='nameofperson' src='/google.png' />
+        <Avatar
+          size={'sm'}
+          name={`${user?.username}의 프로필이미지`}
+          src={user?.profilePicURL || ''}
+        />
         <Box display={{ base: 'none', md: 'block' }}>Profile</Box>
       </Link>
     </Tooltip>
