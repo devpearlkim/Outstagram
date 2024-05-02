@@ -4,23 +4,19 @@ import {
   Flex,
   Skeleton,
   SkeletonCircle,
+  Text,
   VStack,
 } from '@chakra-ui/react';
 import FeedPost from './FeedPost';
-import { useEffect, useState } from 'react';
+import useGetFeedPosts from '../../hooks/useGetFeedPosts';
 
 function FeedPosts() {
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, []);
+  const { isLoading, posts } = useGetFeedPosts();
 
   return (
     <Container maxW={'container.sm'} py={10} px={2}>
       {isLoading &&
-        [0, 1, 2, 3].map((_, idx) => (
+        [0, 1, 2].map((_, idx) => (
           <VStack key={idx} gap={4} alignItems={'flex-start'} mb={10}>
             <Flex gap={2}>
               <SkeletonCircle size={10} />
@@ -34,12 +30,14 @@ function FeedPosts() {
             </Skeleton>
           </VStack>
         ))}
-      {!isLoading && (
+      {!isLoading &&
+        posts.length > 0 &&
+        posts.map((post) => <FeedPost key={post.id} post={post} />)}
+      {!isLoading && posts.length === 0 && (
         <>
-          <FeedPost username='jay' img='/auth.png' avatar='/auth.png' />
-          <FeedPost username='jay' img='/google.png' avatar='/google.png' />
-          <FeedPost username='jay' img='/auth.png' avatar='/auth.png' />
-          <FeedPost username='jay' img='/auth.png' avatar='/auth.png' />
+          <Text fontSize={'md'} color={'blue.400'}>
+            다른 유저를 팔로우하고, 게시글을 확인해보세요 :D
+          </Text>
         </>
       )}
     </Container>

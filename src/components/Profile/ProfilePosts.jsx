@@ -1,14 +1,12 @@
-import { Box, Grid, Skeleton, VStack } from '@chakra-ui/react';
+import { Box, Flex, Grid, Skeleton, Text, VStack } from '@chakra-ui/react';
 import ProfilePost from './ProfilePost';
-import { useEffect, useState } from 'react';
+import useGetUserPosts from '../../hooks/useGetUserPosts';
 
 const ProfilePosts = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, []);
+  const { isLoading, posts } = useGetUserPosts();
+
+  const noPost = !isLoading && posts.length === 0;
+  if (noPost) return <NoPost />;
 
   return (
     <Grid
@@ -30,8 +28,8 @@ const ProfilePosts = () => {
 
       {!isLoading && (
         <>
-          {[0, 1, 2, 3].map((_, idx) => (
-            <ProfilePost key={idx} />
+          {posts.map((post) => (
+            <ProfilePost post={post} key={post.id} />
           ))}
         </>
       )}
@@ -40,3 +38,11 @@ const ProfilePosts = () => {
 };
 
 export default ProfilePosts;
+
+const NoPost = () => {
+  return (
+    <Flex flexDir='column' textAlign={'center'} mx={'auto'} mt={10}>
+      <Text fontSize={'2xl'}>작성글이 없습니다</Text>
+    </Flex>
+  );
+};

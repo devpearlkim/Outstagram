@@ -49,7 +49,7 @@ const Search = () => {
           justifyContent={{ base: 'center', md: 'flex-start' }}
           onClick={onOpen}
         >
-          <FiSearch />
+          <FiSearch size={25} />
           <Box display={{ base: 'none', md: 'block' }}>Search</Box>
         </Flex>
       </Tooltip>

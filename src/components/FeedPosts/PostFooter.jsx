@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { FaRegComment } from 'react-icons/fa';
 import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io';
 
-export default function PostFooter({ username, isProfilePage }) {
+export default function PostFooter({ isProfilePage, post, creatorProfile }) {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(100);
   const handleLike = () => {
@@ -32,11 +32,10 @@ export default function PostFooter({ username, isProfilePage }) {
           </Box>
         </Flex>
         <Text fontSize={'sm'} fontWeight={600}>
-          {likes} likes
+          {post.likes.length} likes
         </Text>
         {!isProfilePage && (
           <>
-            {' '}
             <Text fontSize={'sm'} fontWeight={700}>
               {username}{' '}
               <Text as={'span'} fontWeight={400}>
