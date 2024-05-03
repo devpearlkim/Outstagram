@@ -12,7 +12,7 @@ const useGetFeedPosts = () => {
   const { posts, setPosts } = usePostStore();
   const { user } = useAuthStore();
   const { setUserProfile } = useUserProfileStore();
-  console.log(posts);
+
   useEffect(() => {
     const getFeedPosts = async () => {
       setIsLoading(true);

@@ -115,7 +115,7 @@ const CreatePost = () => {
                 position={'relative'}
                 justifyContent={'center'}
               >
-                <Image src={selectedFile} alt='Selected img' />
+                <Image src={selectedFile} alt='선택한 이미지파일' />
                 <CloseButton
                   position={'absolute'}
                   top={2}
@@ -167,16 +167,20 @@ function useCreatePost() {
     };
 
     try {
+      // posts에 newPost추가, postRef 가져오기
       const postDocRef = await addDoc(collection(firestore, 'posts'), newPost);
       const userDocRef = doc(firestore, 'users', user.uid);
       const imageRef = ref(storage, `posts/${postDocRef.id}`);
 
+      // 유저Ref에서 posts배열에 postDocRef.id추가
       await updateDoc(userDocRef, { posts: arrayUnion(postDocRef.id) });
 
+      // postDocRef에 이미지URL추가
       await uploadString(imageRef, selectedFile, 'data_url');
       const downloadURL = await getDownloadURL(imageRef);
       await updateDoc(postDocRef, { imageURL: downloadURL });
 
+      // newPost객체에도 이미지URL추가
       newPost.imageURL = downloadURL;
 
       if (userProfile.uid === user.uid)
