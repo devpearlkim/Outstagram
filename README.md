@@ -1,5 +1,9 @@
 # 인스타그램 클론 sns
 
+### 사용기술:
+
+firebase, awa amplify, chakra-ui, react, javascript
+
 ### 배포링크:
 
 https://www.pearlstagram.com

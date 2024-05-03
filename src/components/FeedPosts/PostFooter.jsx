@@ -39,7 +39,7 @@ export default function PostFooter({ isProfilePage, post, creatorProfile }) {
             <Text fontSize={'sm'} fontWeight={700}>
               {creatorProfile?.username}{' '}
               <Text as={'span'} fontWeight={400}>
-                날씨 좋다
+                {post.caption}
               </Text>
             </Text>
             <Text fontSize={'sm'} color={'gray.700'}>
