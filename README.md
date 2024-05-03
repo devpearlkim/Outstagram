@@ -16,7 +16,7 @@ https://www.pearlstagram.com
 
 https://beginner2junior.tistory.com
 
-### Courses referenced (참고한 겅의):
+### Courses referenced (참고한 강의):
 
 https://www.youtube.com/watch?v=RMScMwY2B6Q
 
