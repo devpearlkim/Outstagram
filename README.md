@@ -29,7 +29,7 @@ https://www.youtube.com/watch?v=RMScMwY2B6Q
 #### Enhancement, additional features 
 
 ##### Enhancements needed:
-- Change form validation (image, nickname, self)
+- Change form validation (image, nickname)
 - Implement password recovery
 - Update user search to onChange (+ update suggestedUser followers)
 - Add hashtag functionality
