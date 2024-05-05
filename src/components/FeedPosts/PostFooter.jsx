@@ -16,6 +16,7 @@ import usePostComment from '../../hooks/usePostComment';
 import useLikePost from '../../hooks/useLikePost';
 import { timeAgo } from '../../util/timeAgo';
 import CommentsModal from '../Modals/CommentsModal';
+import useShowToast from '../../hooks/useShowToast';
 
 const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
   const { isCommenting, handlePostComment } = usePostComment();
@@ -24,10 +25,23 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
   const commentRef = useRef(null);
   const { handleLikePost, isLiked, likes } = useLikePost(post);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const showToast = useShowToast();
 
   const handleSubmitComment = async () => {
     await handlePostComment(post.id, comment);
+    if (!comment.trim(' ').length) {
+      showToast('Error', '내용을 입력하세요', 'error');
+      return;
+    }
+    showToast('Success', '댓글이 작성되었습니다', 'success');
     setComment('');
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleSubmitComment();
+    }
   };
 
   return (
@@ -73,7 +87,6 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
               View all {post.comments.length} comments
             </Text>
           )}
-          {/* COMMENTS MODAL ONLY IN THE HOME PAGE */}
           {isOpen ? (
             <CommentsModal isOpen={isOpen} onClose={onClose} post={post} />
           ) : null}
@@ -90,11 +103,12 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
           <InputGroup>
             <Input
               variant={'flushed'}
-              placeholder={'Add a comment...'}
+              placeholder={'댓글 입력'}
               fontSize={14}
               onChange={(e) => setComment(e.target.value)}
               value={comment}
               ref={commentRef}
+              onKeyDown={handleKeyDown}
             />
             <InputRightElement>
               <Button

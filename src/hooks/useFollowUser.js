@@ -14,8 +14,6 @@ function useFollowUser(userId) {
   const showToast = useShowToast();
 
   const handleFollowUser = async () => {
-    console.log('매개변수로 받은 userID', userId);
-    console.log('로그인한 userId', user.uid);
     setIsUpdating(true);
 
     try {
