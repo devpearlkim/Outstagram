@@ -1,30 +1,125 @@
-# 인스타그램 클론 sns (2024/04/23 - 진행중)
+# 인스타그램 클론 sns (2024/04/23 ~ )
 
-### 사용기술:
+### Tech Stack:
 
-firebase, awa amplify, chakra-ui, react, javascript
+- Firebase
+- Amplify
+- Chakra UI
+- React
+- JavaScript
 
-### 배포링크:
+### Deployment Link:
 
 https://www.pearlstagram.com
 
-### 블로그 포스팅으로 과정 기록:
+### Process documented in a blog post:
 
 https://beginner2junior.tistory.com
 
-### 참고한 강의:
+### Courses referenced (참고한 강의):
 
 https://www.youtube.com/watch?v=RMScMwY2B6Q
 
+### Project Progress:
+
+#### STEP1 (2024/04/23 - 2024/05/03)
+#### Complete basic functionalities while watching lectures + Identify areas for improvement and enhance them 
+
+#### STEP2 (2024/05/05 - ???)
+#### Enhancement, additional features 
+
+##### Enhancements needed:
+- Change form validation (image, nickname)
+- Implement password recovery
+- Update user search to onChange (+ update suggestedUser followers)
+- Add hashtag functionality
+- Separate search page (+ add post search, hashtag search)
+- Add DM functionality (+ scroll)
+- Implement pagination for main page, search page
+- Cache data with react-query (reduce state management in store, combine hooks)
+- Implement optimistic updates with react-query (optimize store for follow/like)
+- Implement post editing functionality
+- Implement comment editing and deletion functionality
+- Implement follow and follower list display on click
+
+#### STEP3 Migration to TypeScript
+
+### Project Progress:
+
+DAY1:
+
+- Initial setup
+- Error boundary class
+- AuthForm CSS
+- Focus on empty fields upon AuthForm submission
+- Failed email verification with nodemailer  
+  (Failed due to inability to obtain Google App Password. Improvement needed for authentication with OAuth2.)
+
+DAY3:
+
+- Implemented Firebase Google login
+- Separated AuthForm component
+
+DAY4:
+
+- Implemented user registration
+- Sidebar and Homepage CSS before implementing login and logout
+- Setup Zustand
+- Deployed with Amplify
+
+DAY5:
+
+- Implemented login and logout functionality
+- Styled Sidebar, Navbar, and implemented protected routing
+
+DAY6:
+
+- Completed Google login implementation (excluding password recovery in the auth part)
+- Styled header and tabs for the profile page
+
+DAY7:
+
+- Styled profile page posts and post modal
+- Changed parts using Firebase collection to document
+
+DAY8:
+
+- Implemented profile update functionality
+
+DAY9:
+
+- Implemented following feature
+- Implemented user search, suggested users (with buttons for follow/unfollow)
+- Added functionality for adding posts, viewing profiles, and fetching posts on the main page
+
+DAY10:
+
+- Implemented post deletion
+- Implemented comment functionality
+- Implemented like functionality
+
+
+
 ### 프로젝트 진행 계획:
 
-#### STEP1 강의 보며 기본기능 완성 + 보완이 필요한 부분들 정리하며 보완 (2024/04/23 - 2024/05/03)
+#### STEP1 강의 보며 기본기능 완성 (2024/04/23 - 2024/05/03)
 
-#### STEP2 추가로 보완이 필요한 부분들 보완 (2024/05/05 - ???)
+#### STEP2 보완, 추가기능 (2024/05/05 - ???)
 
-- 원래 계획은 검색기능 페이지로 분리 글검색, 해시태그 검색추가, 글작성 시 해시태그 추가 였으나 그간 해온것과 중복.
-  (지금까지 검색->목록 페이지 여러번 만들었고, 해시태그 부분은 직전프로젝트의 메인 기능 중 하나였음)
-- 변경 계획: 자잘한 부분들도 보완이 필요한 부분 보완하기 및 훅사용, 상태관리, 컴포넌트관리를 한 방식에 대한 비교 및 정리
+보완 필요: 
+- 폼부분 폼체크 변경 (이미지, 닉네임, 본인)  
+- 비밀번호 찾기  
+- 유저검색 onChange로 변경 (+ suggestedUser 팔로워 업데이트)  
+- 해시태그 기능 추가
+- 검색페이지 분리 (+ 글 검색, 해시태그 검색 추가)  
+- DM기능 추가 (+ 스크롤)  
+- 메인페이지, 검색페이지 페이지네이션  
+- react-query로 데이터 캐싱 (sotre에서 상태관리 하는 부분 줄이고, hook합치기)  
+- react-query로 optimistic updates(follow/like부분 store최적화 변경)  
+- 글 수정 기능  
+- 댓글 수정, 삭제 기능  
+- 팔로우, 팔로워 클릭시 리스트 보여주는 기능
+
 
 #### STEP3 타입스크립트로 전환
 
