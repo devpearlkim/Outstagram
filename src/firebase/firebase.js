@@ -1,5 +1,10 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  sendPasswordResetEmail,
+} from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 const firebaseConfig = {
@@ -19,6 +24,10 @@ const storage = getStorage(app);
 // Google Login
 export async function googleLogin() {
   signInWithPopup(auth, provider).catch(console.error);
+}
+
+export async function resetPassword(email) {
+  sendPasswordResetEmail(auth, email).catch(console.error);
 }
 
 export { firestore, auth, provider, storage };

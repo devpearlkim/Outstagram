@@ -12,6 +12,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
   Textarea,
   Tooltip,
   useDisclosure,
@@ -44,6 +45,16 @@ const CreatePost = () => {
   const { isLoading, handleCreatePost } = useCreatePost();
 
   const handlePostCreation = async () => {
+    if (!caption.trim(' ').length) {
+      showToast('Error', '내용을 입력해주세요', 'error');
+      return;
+    }
+
+    if (!selectedFile) {
+      showToast('Error', '이미지를 선택해주세요', 'error');
+      return;
+    }
+
     try {
       await handleCreatePost(selectedFile, caption);
       onClose();
@@ -87,9 +98,11 @@ const CreatePost = () => {
           <ModalCloseButton />
           <ModalBody pb={6}>
             <Textarea
-              placeholder='Post caption'
+              placeholder='내용 작성'
               value={caption}
               onChange={(e) => setCaption(e.target.value)}
+              h={300}
+              resize={'none'}
             />
 
             <Input
@@ -98,16 +111,18 @@ const CreatePost = () => {
               ref={imageRef}
               onChange={handleImageChange}
             />
-
-            <BsFillImageFill
+            <Flex
+              alignItems={'center'}
               onClick={() => imageRef.current.click()}
-              style={{
-                marginTop: '15px',
-                marginLeft: '5px',
-                cursor: 'pointer',
-              }}
-              size={16}
-            />
+              cursor={'pointer'}
+              mt={4}
+              ml={2}
+            >
+              <BsFillImageFill size={16} />
+              <Text fontSize={16} fontWeight={'semibold'} ml={2}>
+                이미지 선택
+              </Text>
+            </Flex>
             {selectedFile && (
               <Flex
                 mt={5}
@@ -152,10 +167,7 @@ function useCreatePost() {
 
   const handleCreatePost = async (selectedFile, caption) => {
     if (isLoading) return;
-    if (!selectedFile) {
-      showToast('Error', '이미지를 선택해주세요', 'error');
-      return;
-    }
+
     setIsLoading(true);
 
     const newPost = {
