@@ -5,37 +5,43 @@ import useShowToast from './useShowToast';
 
 const useSearchUser = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState(null);
+  const [users, setUsers] = useState([]);
   const showToast = useShowToast();
 
   const getUserProfile = async (username) => {
     setIsLoading(true);
-    setUser(null);
+    setUsers([]);
 
     try {
       const q = query(
         collection(firestore, 'users'),
-        where('username', '==', username)
+        where('username', '>=', username)
       );
 
       const querySnapshot = await getDocs(q);
-      if (querySnapshot.empty)
-        return showToast('Error', '해당 유저가 없습니다', 'error');
+      // if (querySnapshot.empty)
+      // return showToast('Error', '해당 유저가 없습니다', 'error');
 
-      // 유저 하나
+      const foundUsers = [];
+      let count = 0;
       querySnapshot.forEach((doc) => {
-        setUser(doc.data());
+        if (count < 5) {
+          foundUsers.push(doc.data());
+          count++;
+        }
       });
+
+      setUsers(foundUsers);
     } catch (error) {
       console.error(error);
       showToast('Error', '유저 조회 중 오류, 잠시 후 시도해주세요', 'error');
-      setUser(null);
+      setUsers([]);
     } finally {
       setIsLoading(false);
     }
   };
 
-  return { isLoading, getUserProfile, user, setUser };
+  return { isLoading, getUserProfile, users, setUsers };
 };
 
 export default useSearchUser;

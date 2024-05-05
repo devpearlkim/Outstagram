@@ -22,10 +22,11 @@ import SuggestedUser from '../SuggestedUsers/SuggestedUser';
 const Search = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const searchRef = useRef(null);
-  const { user, isLoading, getUserProfile, setUser } = useSearchUser();
+  const { users, isLoading, getUserProfile } = useSearchUser();
 
   const handleSearchUser = (e) => {
     e.preventDefault();
+    console.log(searchRef.current.value);
     getUserProfile(searchRef.current.value);
   };
 
@@ -63,9 +64,14 @@ const Search = () => {
             <form onSubmit={handleSearchUser}>
               <FormControl>
                 <FormLabel>Username</FormLabel>
-                <Input placeholder='jinju' ref={searchRef} />
+                <Input
+                  placeholder='검색어 입력'
+                  ref={searchRef}
+                  onChange={handleSearchUser}
+                />
               </FormControl>
 
+              {/* 검색 페이지 분리 필요 */}
               <Flex w={'full'} justifyContent={'flex-end'}>
                 <Button
                   type='submit'
@@ -78,7 +84,9 @@ const Search = () => {
                 </Button>
               </Flex>
             </form>
-            {user && <SuggestedUser user={user} setUser={setUser} />}
+            {/* setUser 넘기지 않기 */}
+            {users.length > 0 &&
+              users.map((user) => <SuggestedUser user={user} key={user.uid} />)}
           </ModalBody>
         </ModalContent>
       </Modal>
