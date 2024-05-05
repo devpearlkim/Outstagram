@@ -21,12 +21,10 @@ function useFollowUser(userId) {
       const currentUserRef = doc(firestore, 'users', user.uid);
       const userToFollowOrUnfollorRef = doc(firestore, 'users', userId);
 
-      console.log(isFollowing);
       await updateDoc(currentUserRef, {
         following: isFollowing ? arrayRemove(userId) : arrayUnion(userId),
       });
 
-      console.log(isFollowing);
       await updateDoc(userToFollowOrUnfollorRef, {
         followers: isFollowing ? arrayRemove(user.uid) : arrayUnion(user.uid),
       });

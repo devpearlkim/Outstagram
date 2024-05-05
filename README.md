@@ -23,12 +23,15 @@ https://www.youtube.com/watch?v=RMScMwY2B6Q
 ### Project Progress:
 
 #### STEP1 (2024/04/23 - 2024/05/03)
-#### Complete basic functionalities while watching lectures + Identify areas for improvement and enhance them 
+
+#### Complete basic functionalities while watching lectures + Identify areas for improvement and enhance them
 
 #### STEP2 (2024/05/05 - ???)
-#### Enhancement, additional features 
+
+#### Enhancement, additional features
 
 ##### Enhancements needed:
+
 - Change form validation (image, nickname)
 - Implement password recovery
 - Update user search to onChange (+ update suggestedUser followers)
@@ -98,28 +101,26 @@ DAY10:
 - Implemented comment functionality
 - Implemented like functionality
 
-
-
 ### 프로젝트 진행 계획:
 
 #### STEP1 강의 보며 기본기능 완성 (2024/04/23 - 2024/05/03)
 
 #### STEP2 보완, 추가기능 (2024/05/05 - ???)
 
-보완 필요: 
-- 폼부분 폼체크 변경 (이미지, 닉네임, 본인)  
-- 비밀번호 찾기  
-- 유저검색 onChange로 변경 (+ suggestedUser 팔로워 업데이트)  
-- 해시태그 기능 추가
-- 검색페이지 분리 (+ 글 검색, 해시태그 검색 추가)  
-- DM기능 추가 (+ 스크롤)  
-- 메인페이지, 검색페이지 페이지네이션  
-- react-query로 데이터 캐싱 (sotre에서 상태관리 하는 부분 줄이고, hook합치기)  
-- react-query로 optimistic updates(follow/like부분 store최적화 변경)  
-- 글 수정 기능  
-- 댓글 수정, 삭제 기능  
-- 팔로우, 팔로워 클릭시 리스트 보여주는 기능
+보완 필요:
 
+- 폼부분 폼체크 변경 (이미지, 닉네임, 본인)
+- 비밀번호 찾기
+- 유저검색 onChange로 변경 (+ suggestedUser 팔로워 업데이트)
+- 해시태그 기능 추가
+- 검색페이지 분리 (+ 글 검색, 해시태그 검색 추가)
+- DM기능 추가 (+ 스크롤)
+- 메인페이지, 검색페이지 페이지네이션
+- react-query로 데이터 캐싱 (sotre에서 상태관리 하는 부분 줄이고, hook합치기)
+- react-query로 optimistic updates(follow/like부분 store최적화 변경)
+- 글 수정 기능
+- 댓글 수정, 삭제 기능
+- 팔로우, 팔로워 클릭시 리스트 보여주는 기능
 
 #### STEP3 타입스크립트로 전환
 

@@ -2,28 +2,23 @@ import { Avatar, Box, Button, Flex, VStack } from '@chakra-ui/react';
 import useFollowUser from '../../hooks/useFollowUser';
 import { useAuthStore } from '../../store/authStore';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
-export default function SuggestedUser({
-  user: suggestedUser,
-  setUser: setSuggestedUser,
-}) {
+export default function SuggestedUser({ user: suggestedUser }) {
   const { isUpdating, isFollowing, handleFollowUser } = useFollowUser(
     suggestedUser.uid
   );
   const { user } = useAuthStore();
+  const [numberOfFollower, setNumberOfFollower] = useState(
+    suggestedUser.followers.length
+  );
 
   const onFollowUser = async () => {
     await handleFollowUser();
 
-    // suggestedUser 화면에서 바로 업데이트
-    setSuggestedUser({
-      ...suggestedUser,
-      followers: isFollowing
-        ? suggestedUser.followers.filter(
-            (follower) => follower.uid !== user.uid
-          )
-        : [...suggestedUser.followers, user],
-    });
+    setNumberOfFollower((prevFollower) =>
+      isFollowing ? prevFollower - 1 : prevFollower + 1
+    );
   };
 
   return (
@@ -39,7 +34,7 @@ export default function SuggestedUser({
             </Box>
           </Link>
           <Box fontSize={11} color={'gray.500'}>
-            {suggestedUser.followers.length} followers
+            {numberOfFollower} followers
           </Box>
         </VStack>
       </Flex>
