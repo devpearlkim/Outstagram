@@ -95,11 +95,22 @@ DAY10:
 - Implemented comment functionality
 - Implemented like functionality
 
-DAY 13
+Code Modification DAY1:
 
 - Modify image check in the writing form.
 - Implement password reset feature.
 - Update user search functionality to trigger onChange.
+
+Code Modification Day 2:
+
+- Studying design patterns
+- Drawing component trees
+- Understanding structure, understanding data flow
+
+Code Modification Day 3:
+
+- Applying React Query
+- Optimistic updates with React Query
 
 ### 프로젝트 진행 계획:
 
@@ -172,8 +183,19 @@ DAY10 :
 - 댓글구현
 - 좋아요 구현
 
-DAY13 :
+코드수정 DAY1 :
 
 - 글쓰기폼 이미지체크 수정
 - 비밀번호 재설정 기능
 - 검색 (유저검색 onChange로 수정)
+
+코드수정 DAY2:
+
+- 디자인패턴 공부
+- 컴포넌트 트리 그리기
+- 구조 파악 데이터 흐름 파악
+
+코드수정 DAY3:
+
+- 리액트쿼리 적용
+- 리액트쿼리 낙관적 업데이트
