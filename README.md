@@ -32,18 +32,14 @@ https://www.youtube.com/watch?v=RMScMwY2B6Q
 
 ##### Enhancements needed:
 
+- [] Studying Design Patterns, Drawing Component Trees
 - [v] Change form validation (image, nickname)
 - [v] Implement password recovery
 - [v] Update user search to onChange (+ update suggestedUser followers)
-- [] Add hashtag functionality
-- [] Separate search page (+ add post search, hashtag search)
-- [] Add DM functionality (+ scroll)
-- [] Implement pagination for main page, search page
+- [] Implement pagination for main page
 - [] Cache data with react-query (reduce state management in store, combine hooks)
 - [] Implement optimistic updates with react-query (optimize store for follow/like)
 - [] Implement post editing functionality
-- [] Implement comment editing and deletion functionality
-- [] Implement follow and follower list display on click
 
 ### Project Progress:
 
@@ -113,18 +109,14 @@ DAY 13
 
 보완 필요:
 
+- [] 디자인 패턴 공부, 컴포넌트 트리 그리기
 - [v] 폼부분 폼체크 변경 (이미지, 닉네임, 본인)
 - [v] 비밀번호 찾기
 - [v] 유저검색 onChange로 변경 (+ suggestedUser 팔로워 업데이트)
-- [] 해시태그 기능 추가
-- [] 검색페이지 분리 (+ 글 검색, 해시태그 검색 추가)
-- [] DM기능 추가 (+ 스크롤)
 - [] 메인페이지, 검색페이지 페이지네이션
 - [] react-query로 데이터 캐싱 (sotre에서 상태관리 하는 부분 줄이고, hook합치기)
 - [] react-query로 optimistic updates(follow/like부분 store최적화 변경)
 - [] 글 수정 기능
-- [] 댓글 수정, 삭제 기능
-- [] 팔로우, 팔로워 클릭시 리스트 보여주는 기능
 
 ### 프로젝트 진행상황:
 
