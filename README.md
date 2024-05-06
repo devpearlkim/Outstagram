@@ -101,13 +101,13 @@ Code Modification DAY1:
 - Implement password reset feature.
 - Update user search functionality to trigger onChange.
 
-Code Modification Day 2:
+Code Modification Day 2 (will be 24/5/8):
 
 - Studying design patterns
 - Drawing component trees
 - Understanding structure, understanding data flow
 
-Code Modification Day 3:
+Code Modification Day 3 (will be 24/5/10):
 
 - Applying React Query
 - Optimistic updates with React Query
@@ -189,13 +189,13 @@ DAY10 :
 - 비밀번호 재설정 기능
 - 검색 (유저검색 onChange로 수정)
 
-코드수정 DAY2:
+코드수정 DAY2 (24/5/8 예정):
 
 - 디자인패턴 공부
 - 컴포넌트 트리 그리기
 - 구조 파악 데이터 흐름 파악
 
-코드수정 DAY3:
+코드수정 DAY3 (24/5/10 예정):
 
 - 리액트쿼리 적용
 - 리액트쿼리 낙관적 업데이트
