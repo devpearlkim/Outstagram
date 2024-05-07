@@ -33,11 +33,12 @@ https://www.youtube.com/watch?v=RMScMwY2B6Q
 ##### Enhancements needed:
 
 - [] Studying Design Patterns, Drawing Component Trees
+- [] Transition to TypeScript
+- [] Learn testing and write test codes
+- [] Cache data with react-query (reduce state management in store, combine hooks)
 - [v] Change form validation (image, nickname)
 - [v] Implement password recovery
 - [v] Update user search to onChange (+ update suggestedUser followers)
-- [] Implement pagination for main page
-- [] Cache data with react-query (reduce state management in store, combine hooks)
 - [] Implement optimistic updates with react-query (optimize store for follow/like)
 - [] Implement post editing functionality
 
@@ -95,22 +96,30 @@ DAY10:
 - Implemented comment functionality
 - Implemented like functionality
 
-Code Modification DAY1:
+Code Modification:
 
 - Modify image check in the writing form.
 - Implement password reset feature.
 - Update user search functionality to trigger onChange.
 
-Code Modification Day 2 (will be 24/5/8):
+Code Modification (5/7 - 5/8):
 
 - Studying design patterns
 - Drawing component trees
 - Understanding structure, understanding data flow
 
-Code Modification Day 3 (will be 24/5/10):
+Code Modification (5/9 - 5/15):
+
+- Learn testing and write test codes
+
+Code Modification (5/16 - 5/18):
 
 - Applying React Query
 - Optimistic updates with React Query
+
+Code Modification (5/19 - 5/23):
+
+- Transition to TypeScript
 
 ### 프로젝트 진행 계획:
 
@@ -120,12 +129,13 @@ Code Modification Day 3 (will be 24/5/10):
 
 보완 필요:
 
+- [] 테스트코드 작성
+- [] TS로 전환
+- [] react-query로 데이터 캐싱
 - [] 디자인 패턴 공부, 컴포넌트 트리 그리기
 - [v] 폼부분 폼체크 변경 (이미지, 닉네임, 본인)
 - [v] 비밀번호 찾기
 - [v] 유저검색 onChange로 변경 (+ suggestedUser 팔로워 업데이트)
-- [] 메인페이지, 검색페이지 페이지네이션
-- [] react-query로 데이터 캐싱 (sotre에서 상태관리 하는 부분 줄이고, hook합치기)
 - [] react-query로 optimistic updates(follow/like부분 store최적화 변경)
 - [] 글 수정 기능
 
@@ -183,19 +193,27 @@ DAY10 :
 - 댓글구현
 - 좋아요 구현
 
-코드수정 DAY1 :
+코드수정 (5/4):
 
 - 글쓰기폼 이미지체크 수정
 - 비밀번호 재설정 기능
 - 검색 (유저검색 onChange로 수정)
 
-코드수정 DAY2 (24/5/8 예정):
+코드수정 (5/7 - 5/8):
 
 - 디자인패턴 공부
 - 컴포넌트 트리 그리기
 - 구조 파악 데이터 흐름 파악
 
-코드수정 DAY3 (24/5/10 예정):
+코드수정 (5/9 - 5/15):
 
-- 리액트쿼리 적용
-- 리액트쿼리 낙관적 업데이트
+- 테스트코드 배워서 테스트코드 작성
+
+코드수정 (5/16 - 5/18):
+
+- React Query 적용
+- 낙관적 업데이트 적용
+
+코드수정 (5/19 - 5/23):
+
+- 타입스크립트로 전환
