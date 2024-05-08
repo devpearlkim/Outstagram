@@ -1,5 +1,8 @@
 # 인스타그램 클론 sns (2024/04/23 ~ )
 
+![컴포넌트트리](https://github.com/devpearlkim/Outstagram/assets/167426229/ac4fdc01-cf6c-4710-99c7-5dfd8c1d69bb)
+
+
 ### Tech Stack:
 
 - Firebase
