@@ -10,7 +10,7 @@ const Comment = ({ comment }) => {
   return (
     <Flex gap={4}>
       <Link to={`/${userProfile.username}`}>
-        <Avatar src={userProfile.profilePicURL} size={'sm'} />
+        <Avatar src={userProfile.profilePicURL || '/none.jpg'} size={'sm'} />
       </Link>
       <Flex direction={'column'}>
         <Flex gap={2} alignItems={'center'}>

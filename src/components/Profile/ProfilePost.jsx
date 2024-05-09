@@ -149,7 +149,7 @@ const ProfilePost = ({ post }) => {
                 <Flex alignItems={'center'} justifyContent={'space-between'}>
                   <Flex alignItems={'center'} gap={4}>
                     <Avatar
-                      src={userProfile.profilePicURL}
+                      src={userProfile.profilePicURL || '/none.jpg'}
                       size={'sm'}
                       name='jay'
                     />
