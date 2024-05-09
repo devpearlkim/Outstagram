@@ -4,6 +4,13 @@
       "presets": [
         "@babel/preset-react",
         [
+          "babel-preset-vite",
+          {
+            "env": true,
+            "glob": false
+          }
+        ],
+        [
           "@babel/preset-env",
           {
             "targets": {
