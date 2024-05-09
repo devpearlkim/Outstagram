@@ -33,7 +33,11 @@ export default function ProfileHeader() {
         alignSelf={'flex-start'}
         mx={'auto'}
       >
-        <Avatar src={userProfile.profilePicURL} alt='' />
+        <Avatar
+          data-testid='thumbnail'
+          src={userProfile.profilePicURLprofilePic || '/none.jpg'}
+          alt={`userProfile.profilePicURLprofilePic ? ${userProfile.username}의 프로필 이미지 : 기본 이미지`}
+        />
       </AvatarGroup>
       <VStack alignItems={'start'} gap={2} mx={'auto'} flex={1}>
         <Flex

@@ -26,7 +26,7 @@ const PostHeader = ({ post, creatorProfile }) => {
         {creatorProfile ? (
           <Link to={`/${creatorProfile.username}`}>
             <Avatar
-              src={creatorProfile.profilePicURL}
+              src={creatorProfile.profilePicURL || '/none.jpg'}
               alt={`${creatorProfile.username}의 프로필이미지`}
               size={'sm'}
             />

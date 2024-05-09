@@ -29,7 +29,7 @@ const ProfileLink = () => {
         <Avatar
           size={'sm'}
           name={`${user?.username}의 프로필이미지`}
-          src={user?.profilePicURL || ''}
+          src={user?.profilePicURL || '/none.jpg'}
         />
         <Box display={{ base: 'none', md: 'block' }}>Profile</Box>
       </Link>

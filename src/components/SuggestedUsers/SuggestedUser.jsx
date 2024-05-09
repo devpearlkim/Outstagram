@@ -25,7 +25,10 @@ export default function SuggestedUser({ user: suggestedUser }) {
     <Flex justifyContent={'space-between'} alignItems={'center'} w={'full'}>
       <Flex alignItems={'center'} gap={2}>
         <Link to={`/${suggestedUser.username}`}>
-          <Avatar src={suggestedUser.profilePicURL} size={'md'} />
+          <Avatar
+            src={suggestedUser.profilePicURL || '/none.jpg'}
+            size={'md'}
+          />
         </Link>
         <VStack spacing={2} alignItems={'flex-start'}>
           <Link to={`/${suggestedUser.username}`}>
