@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Flex, VStack } from '@chakra-ui/react';
+import { Avatar, Box, Button, Flex, Image, VStack } from '@chakra-ui/react';
 import useFollowUser from '../../hooks/useFollowUser';
 import { useAuthStore } from '../../store/authStore';
 import { Link } from 'react-router-dom';
@@ -6,12 +6,14 @@ import { useState } from 'react';
 
 export default function SuggestedUser({ user: suggestedUser }) {
   const { isUpdating, isFollowing, handleFollowUser } = useFollowUser(
-    suggestedUser.uid
+    suggestedUser?.uid
   );
   const { user } = useAuthStore();
   const [numberOfFollower, setNumberOfFollower] = useState(
-    suggestedUser.followers.length
+    suggestedUser?.followers?.length
   );
+
+  let userProfilePicURL = suggestedUser?.profilePicURL || '/none.jpg';
 
   const onFollowUser = async () => {
     await handleFollowUser();
@@ -24,16 +26,19 @@ export default function SuggestedUser({ user: suggestedUser }) {
   return (
     <Flex justifyContent={'space-between'} alignItems={'center'} w={'full'}>
       <Flex alignItems={'center'} gap={2}>
-        <Link to={`/${suggestedUser.username}`}>
-          <Avatar
-            src={suggestedUser.profilePicURL || '/none.jpg'}
+        <Link to={`/${suggestedUser?.username}`}>
+          <Avatar src={userProfilePicURL} size={'md'} />
+          <Image
+            data-testid='thumbnail'
+            src={userProfilePicURL}
             size={'md'}
+            display={'hidden'}
           />
         </Link>
         <VStack spacing={2} alignItems={'flex-start'}>
-          <Link to={`/${suggestedUser.username}`}>
+          <Link to={`/${suggestedUser?.username}`}>
             <Box fontSize={12} fontWeight={'bold'}>
-              {suggestedUser.username}
+              {suggestedUser?.username}
             </Box>
           </Link>
           <Box fontSize={11} color={'gray.500'}>
@@ -41,7 +46,7 @@ export default function SuggestedUser({ user: suggestedUser }) {
           </Box>
         </VStack>
       </Flex>
-      {user.uid !== suggestedUser.uid && (
+      {user?.uid !== suggestedUser?.uid && (
         <Button
           fontSize={13}
           bg={'transparent'}
