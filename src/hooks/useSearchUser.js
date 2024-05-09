@@ -19,8 +19,6 @@ const useSearchUser = () => {
       );
 
       const querySnapshot = await getDocs(q);
-      // if (querySnapshot.empty)
-      // return showToast('Error', '해당 유저가 없습니다', 'error');
 
       const foundUsers = [];
       let count = 0;

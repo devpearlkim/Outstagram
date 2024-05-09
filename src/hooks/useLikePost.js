@@ -18,7 +18,6 @@ const useLikePost = (post) => {
 
     try {
       const postRef = doc(firestore, 'posts', post.id);
-      console.log('postRef');
       await updateDoc(postRef, {
         likes: isLiked ? arrayRemove(user.uid) : arrayUnion(user.uid),
       });
