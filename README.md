@@ -7,6 +7,8 @@
 - Chakra UI
 - React
 - JavaScript
+- zustand
+- Jest
 
 ### Deployment Link:
 
