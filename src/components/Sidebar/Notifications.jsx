@@ -14,7 +14,6 @@ const Notification = () => {
     >
       <Link
         display={'flex'}
-        // to={}
         as={RouterLink}
         alignItems={'center'}
         gap={4}

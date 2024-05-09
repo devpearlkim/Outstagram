@@ -26,7 +26,6 @@ const Search = () => {
 
   const handleSearchUser = (e) => {
     e.preventDefault();
-    console.log(searchRef.current.value);
     getUserProfile(searchRef.current.value);
   };
 

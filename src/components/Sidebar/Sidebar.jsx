@@ -4,10 +4,9 @@ import SidebarItems from './SidebarItems';
 import { IoLogoInstagram } from 'react-icons/io';
 import { BiLogOut } from 'react-icons/bi';
 import useLogout from '../../hooks/useLogout';
-import { useAuthStore } from '../../store/authStore';
 
 export default function Sidebar() {
-  const { logout, isLoggingOut, error } = useLogout();
+  const { logout, isLoggingOut } = useLogout();
   const handleLogout = () => {
     logout();
   };
