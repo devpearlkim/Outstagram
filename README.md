@@ -2,16 +2,15 @@
 
 ![컴포넌트트리](https://github.com/devpearlkim/Outstagram/assets/167426229/ac4fdc01-cf6c-4710-99c7-5dfd8c1d69bb)
 
-
 ### Tech Stack:
 
+- Vitest
 - Firebase
 - Amplify
 - Chakra UI
 - React
 - JavaScript
 - zustand
-- Jest
 
 ### Deployment Link:
 
@@ -39,7 +38,7 @@ https://www.youtube.com/watch?v=RMScMwY2B6Q
 
 - [] Studying Design Patterns, Drawing Component Trees
 - [] Transition to TypeScript
-- [] Learn testing and write test codes
+- [v] Learn testing and write test codes
 - [] Cache data with react-query (reduce state management in store, combine hooks)
 - [v] Change form validation (image, nickname)
 - [v] Implement password recovery
@@ -134,10 +133,10 @@ Code Modification (5/19 - 5/23):
 
 보완 필요:
 
-- [] 테스트코드 작성
+- [v] 테스트코드 작성
 - [] TS로 전환
 - [] react-query로 데이터 캐싱
-- [] 디자인 패턴 공부, 컴포넌트 트리 그리기
+- [v] 디자인 패턴 공부, 컴포넌트 트리 그리기
 - [v] 폼부분 폼체크 변경 (이미지, 닉네임, 본인)
 - [v] 비밀번호 찾기
 - [v] 유저검색 onChange로 변경 (+ suggestedUser 팔로워 업데이트)
