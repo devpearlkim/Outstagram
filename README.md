@@ -106,22 +106,19 @@ Code Modification:
 - Implement password reset feature.
 - Update user search functionality to trigger onChange.
 
-Code Modification (5/7 - 5/8):
+Understanding structure(5/7 - 5/8):
 
 - Studying design patterns
 - Drawing component trees
 - Understanding structure, understanding data flow
 
-Code Modification (5/9 - 5/15):
+testing(Vitest), React Query (5/9 - 5/15):
 
 - Learn testing and write test codes
-
-Code Modification (5/16 - 5/18):
-
 - Applying React Query
 - Optimistic updates with React Query
 
-Code Modification (5/19 - 5/23):
+TypeScript (5/16 - 5/19):
 
 - Transition to TypeScript
 
@@ -203,21 +200,18 @@ DAY10 :
 - 비밀번호 재설정 기능
 - 검색 (유저검색 onChange로 수정)
 
-코드수정 (5/7 - 5/8):
+컴포넌트 구조 파악 (5/7 - 5/8):
 
 - 디자인패턴 공부
 - 컴포넌트 트리 그리기
 - 구조 파악 데이터 흐름 파악
 
-코드수정 (5/9 - 5/15):
+테스트코드 작성, React-query 적용 (5/9 - 5/15):
 
 - 테스트코드 배워서 테스트코드 작성
-
-코드수정 (5/16 - 5/18):
-
 - React Query 적용
 - 낙관적 업데이트 적용
 
-코드수정 (5/19 - 5/23):
+TS전환 (5/16 - 5/19):
 
 - 타입스크립트로 전환
