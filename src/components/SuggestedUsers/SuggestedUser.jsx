@@ -28,12 +28,13 @@ export default function SuggestedUser({ user: suggestedUser }) {
       <Flex alignItems={'center'} gap={2}>
         <Link to={`/${suggestedUser?.username}`}>
           <Avatar src={userProfilePicURL} size={'md'} />
-          <Image
-            data-testid='thumbnail'
-            src={userProfilePicURL}
-            size={'md'}
-            display={'hidden'}
-          />
+          <Box display={'none'}>
+            <Image
+              data-testid='thumbnail'
+              src={userProfilePicURL}
+              size={'md'}
+            />
+          </Box>
         </Link>
         <VStack spacing={2} alignItems={'flex-start'}>
           <Link to={`/${suggestedUser?.username}`}>
