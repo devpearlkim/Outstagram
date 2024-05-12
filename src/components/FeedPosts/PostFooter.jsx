@@ -51,11 +51,7 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
           {isLiked ? <IoMdHeart size={25} /> : <IoMdHeartEmpty size={25} />}
         </Box>
 
-        <Box
-          cursor={'pointer'}
-          fontSize={18}
-          onClick={() => commentRef.current.focus()}
-        >
+        <Box cursor={'pointer'} fontSize={18} onClick={onOpen}>
           <FaRegComment size={25} />
         </Box>
       </Flex>

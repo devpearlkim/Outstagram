@@ -1,5 +1,5 @@
 import { Avatar, Box, Button, Flex, Image, VStack } from '@chakra-ui/react';
-import useFollowUser from '../../hooks/useFollowUser';
+import useFollowUser from '../../hooks/User/useFollowUser';
 import { useAuthStore } from '../../store/authStore';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';

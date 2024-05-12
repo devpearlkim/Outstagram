@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { useRef, useState } from 'react';
 import { updateFormData } from '../../util/form';
-import useLogin from '../../hooks/useLogin';
+import useLogin from '../../hooks/Auth/useLogin';
 import { resetPassword } from '../../firebase/firebase';
 import useShowToast from '../../hooks/useShowToast';
 
@@ -22,8 +22,8 @@ export default function Login() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { signIn, loading } = useLogin();
   const [formData, setFormData] = useState({
-    email: 'user@test.com',
-    password: 'asdf123!',
+    email: 'abc@test.com',
+    password: 'abc123!',
   });
   const [resetEmail, setResetEmail] = useState();
 

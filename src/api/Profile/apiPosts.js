@@ -1,12 +1,19 @@
 import {
   addDoc,
+  arrayRemove,
   arrayUnion,
   collection,
+  deleteDoc,
   doc,
   updateDoc,
 } from 'firebase/firestore';
 import { firestore, storage } from '../../firebase/firebase';
-import { getDownloadURL, ref, uploadString } from 'firebase/storage';
+import {
+  deleteObject,
+  getDownloadURL,
+  ref,
+  uploadString,
+} from 'firebase/storage';
 
 export const createEditPost = async (userId, caption, selectedFile, id) => {
   const newPost = {
@@ -41,4 +48,16 @@ export const createEditPost = async (userId, caption, selectedFile, id) => {
     const downloadURL = await getDownloadURL(imageRef);
     await updateDoc(postDocRef, { imageURL: downloadURL });
   }
+};
+
+export const deletePost = async ({ postId, userId }) => {
+  const imageRef = ref(storage, `posts/${postId}`);
+  await deleteObject(imageRef);
+
+  await deleteDoc(doc(firestore, 'posts', postId));
+
+  const userRef = doc(firestore, 'users', userId);
+  await updateDoc(userRef, {
+    posts: arrayRemove(postId),
+  });
 };

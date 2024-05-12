@@ -8,8 +8,8 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import FeedPost from './FeedPost';
-import useGetFeedPosts from '../../hooks/useGetFeedPosts';
-import useIntersect from '../../hooks/useIntersect';
+import useGetFeedPosts from '../../hooks/FeedPosts/useGetFeedPosts';
+import useIntersect from '../../hooks/intersection/useIntersect';
 
 function FeedPosts() {
   const {

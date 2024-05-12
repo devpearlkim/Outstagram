@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import useShowToast from './useShowToast';
-import { createEditPost } from '../api/Profile/apiPosts';
+import useShowToast from '../useShowToast';
+import { createEditPost } from '../../api/Profile/apiPosts';
 
 function useEditPost(userId) {
   const showToast = useShowToast();

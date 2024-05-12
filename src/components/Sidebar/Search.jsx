@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 import { FiSearch } from 'react-icons/fi';
 import { useRef } from 'react';
-import useSearchUser from '../../hooks/useSearchUser';
+import useSearchUser from '../../hooks/User/useSearchUser';
 import SuggestedUser from '../SuggestedUsers/SuggestedUser';
 
 const Search = () => {

@@ -10,7 +10,7 @@ import {
 import { useUserProfileStore } from '../../store/userProfileStore';
 import { useAuthStore } from '../../store/authStore';
 import EditProfile from './EditProfile';
-import useFollowUser from '../../hooks/useFollowUser';
+import useFollowUser from '../../hooks/User/useFollowUser';
 
 export default function ProfileHeader() {
   const { userProfile } = useUserProfileStore();
@@ -34,7 +34,7 @@ export default function ProfileHeader() {
         mx={'auto'}
       >
         <Avatar
-          src={userProfile.profilePicURLprofilePic || '/none.jpg'}
+          src={userProfile.profilePicURL || '/none.jpg'}
           alt={`userProfile.profilePicURLprofilePic ? ${userProfile.username}의 프로필 이미지 : 기본 이미지`}
         />
       </AvatarGroup>

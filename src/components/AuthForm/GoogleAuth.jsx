@@ -1,6 +1,6 @@
 import { Flex, Image, Text } from '@chakra-ui/react';
 import { googleLogin } from '../../firebase/firebase';
-import useSignupWithGoogle from '../../hooks/useSignupWithGoogle';
+import useSignupWithGoogle from '../../hooks/Auth/useSignupWithGoogle';
 import useShowToast from '../../hooks/useShowToast';
 
 export default function GoogleAuth({ prefix }) {

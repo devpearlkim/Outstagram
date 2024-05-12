@@ -12,25 +12,19 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import { FaComment } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import Comment from '../Comment/Comment';
 import PostFooter from '../FeedPosts/PostFooter';
 import { useAuthStore } from '../../store/authStore';
 import { useUserProfileStore } from '../../store/userProfileStore';
-import useShowToast from '../../hooks/useShowToast';
 import { useState } from 'react';
-import { usePostStore } from '../../store/postStore';
 import { LuPencil } from 'react-icons/lu';
 import CreatePostForm from './CreatePostForm';
+import useDeletePost from '../../hooks/ProfilePost/useDeletePost';
 
 const ProfilePostModal = ({ isOpen, onClose, post }) => {
-  const showToast = useShowToast();
   const { user } = useAuthStore();
-  const { userProfile, deletePost: deletePostCount } = useUserProfileStore();
-  const [isDeleting, setIsDeleting] = useState(false);
-  const { deletePost } = usePostStore();
-
+  const { userProfile } = useUserProfileStore();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const handleEditPost = () => {
@@ -38,26 +32,12 @@ const ProfilePostModal = ({ isOpen, onClose, post }) => {
     onClose();
   };
 
-  const handleDeletePost = async () => {
-    // if (!window.confirm('정말 삭제하시겠습니까?')) return;
-    // if (isDeleting) return;
-    // try {
-    //   const imageRef = ref(storage, `posts/${post.id}`);
-    //   await deleteObject(imageRef);
-    //   await deleteDoc(doc(firestore, 'posts', post.id));
-    //   const userRef = doc(firestore, 'users', user.uid);
-    //   await updateDoc(userRef, {
-    //     posts: arrayRemove(post.id),
-    //   });
-    //   deletePost(post.id);
-    //   deletePostCount(post.id);
-    //   showToast('Success', '포스트를 삭제했습니다', 'success');
-    // } catch (error) {
-    //   console.error(error);
-    //   showToast('Error', '포스트 삭제 실패, 잠시 후 시도해주세요', 'error');
-    // } finally {
-    //   setIsDeleting(false);
-    // }
+  const { deletePost, isDeleting } = useDeletePost(user?.uid);
+
+  const handleDeletePost = () => {
+    if (!window.confirm('정말 삭제하시겠습니까?')) return;
+    // console.log(post.id);
+    deletePost(post.id);
   };
 
   return (
@@ -142,7 +122,7 @@ const ProfilePostModal = ({ isOpen, onClose, post }) => {
                   maxH={'350px'}
                   overflowY={'auto'}
                 >
-                  {post.comments.map((comment) => (
+                  {post?.comments.map((comment) => (
                     <Comment key={comment.id} comment={comment} />
                   ))}
                 </VStack>

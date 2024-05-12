@@ -19,10 +19,10 @@ import {
 import { BsFillImageFill } from 'react-icons/bs';
 import { useRef, useState } from 'react';
 import useShowToast from '../../hooks/useShowToast';
-import usePreviewImg from '../../hooks/usePreviewImg';
-import useCreatePost from '../../hooks/useCreatePost';
+import usePreviewImg from '../../hooks/image/usePreviewImg';
+import useCreatePost from '../../hooks/ProfilePost/useCreatePost';
 import { useAuthStore } from '../../store/authStore';
-import useEditPost from '../../hooks/useEditPost';
+import useEditPost from '../../hooks/ProfilePost/useEditPost';
 
 const CreatePostForm = ({ isOpen, onClose, postToEdit = {} }) => {
   // postToEdit으로 editSession인지 확인
@@ -37,8 +37,8 @@ const CreatePostForm = ({ isOpen, onClose, postToEdit = {} }) => {
   const { handleImageChange, selectedFile, setSelectedFile } = usePreviewImg();
   const showToast = useShowToast();
   const { user } = useAuthStore();
-  const { isCreating, createPost } = useCreatePost(user.uid);
-  const { isEditing, editPost } = useEditPost(user.uid);
+  const { isCreating, createPost } = useCreatePost(user?.uid);
+  const { isEditing, editPost } = useEditPost(user?.uid);
 
   const onSubmit = async () => {
     if (!caption.trim(' ').length) {
@@ -74,7 +74,6 @@ const CreatePostForm = ({ isOpen, onClose, postToEdit = {} }) => {
             h={300}
             resize={'none'}
           />
-
           <Input
             type='file'
             hidden

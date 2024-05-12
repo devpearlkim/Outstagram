@@ -1,6 +1,6 @@
-import useShowToast from './useShowToast';
+import useShowToast from '../useShowToast';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import fetchProfilePosts from '../api/Profile/fetchProfilePosts';
+import fetchProfilePosts from '../../api/Profile/fetchProfilePosts';
 
 const useGetUserPosts = (userProfileId) => {
   const showToast = useShowToast();

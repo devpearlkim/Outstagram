@@ -1,7 +1,7 @@
 import { signOut } from 'firebase/auth';
-import { auth } from '../firebase/firebase';
+import { auth } from '../../firebase/firebase';
 import { useState } from 'react';
-import { useAuthStore } from '../store/authStore';
+import { useAuthStore } from '../../store/authStore';
 
 const useLogout = () => {
   const userLogout = useAuthStore((state) => state.logout);

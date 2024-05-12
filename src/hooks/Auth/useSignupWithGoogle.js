@@ -1,8 +1,8 @@
 import { signInWithPopup } from 'firebase/auth';
 import { useState } from 'react';
-import { auth, firestore, provider } from '../firebase/firebase';
+import { auth, firestore, provider } from '../../firebase/firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { useAuthStore } from '../store/authStore';
+import { useAuthStore } from '../../store/authStore';
 
 export default function useSignupWithGoogle() {
   const [error, setError] = useState(null);

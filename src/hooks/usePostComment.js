@@ -2,7 +2,13 @@ import { useState } from 'react';
 import useShowToast from './useShowToast';
 import { useAuthStore } from '../store/authStore';
 import { usePostStore } from '../store/postStore';
-import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
+import {
+  addDoc,
+  arrayUnion,
+  collection,
+  doc,
+  updateDoc,
+} from 'firebase/firestore';
 import { firestore } from '../firebase/firebase';
 
 const usePostComment = () => {
@@ -23,10 +29,18 @@ const usePostComment = () => {
       createdBy: user.uid,
       postId,
     };
+
     try {
+      const commentRef = await addDoc(
+        collection(firestore, 'comments'),
+        newComment
+      );
+      const commentId = commentRef.id;
+
       await updateDoc(doc(firestore, 'posts', postId), {
-        comments: arrayUnion(newComment),
+        comments: arrayUnion({ ...newComment, id: commentId }),
       });
+
       addComment(postId, newComment);
     } catch (error) {
       showToast('Error', error.message, 'error');

@@ -1,8 +1,8 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
-import { auth, firestore } from '../firebase/firebase';
+import { auth, firestore } from '../../firebase/firebase';
 import { doc, setDoc } from 'firebase/firestore';
-import { useAuthStore } from '../store/authStore';
+import { useAuthStore } from '../../store/authStore';
 
 export default function useSignupWithEmail() {
   const [loading, setLoading] = useState(false);

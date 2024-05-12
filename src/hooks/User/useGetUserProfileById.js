@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
-import { firestore } from '../firebase/firebase';
+import { firestore } from '../../firebase/firebase';
 
 const useGetUserProfileById = (userId) => {
   const [isLoading, setIsLoading] = useState(true);

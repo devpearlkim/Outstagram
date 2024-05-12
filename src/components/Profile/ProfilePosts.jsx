@@ -8,9 +8,9 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import ProfilePost from './ProfilePost';
-import useGetUserPosts from '../../hooks/useGetUserPosts';
+import useGetUserPosts from '../../hooks/ProfilePost/useGetUserPosts';
 import { useUserProfileStore } from '../../store/userProfileStore';
-import useIntersect from '../../hooks/useIntersect';
+import useIntersect from '../../hooks/intersection/useIntersect';
 import React from 'react';
 
 const ProfilePosts = () => {

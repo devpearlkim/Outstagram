@@ -1,7 +1,7 @@
-import useShowToast from './useShowToast';
-import { useAuthStore } from '../store/authStore';
+import useShowToast from '../useShowToast';
+import { useAuthStore } from '../../store/authStore';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import fetchFeedPosts from '../api/FeedPost/fetchFeedPosts';
+import fetchFeedPosts from '../../api/FeedPost/fetchFeedPosts';
 
 const useGetFeedPosts = () => {
   const showToast = useShowToast();

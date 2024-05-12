@@ -6,7 +6,7 @@ import {
   Skeleton,
   SkeletonCircle,
 } from '@chakra-ui/react';
-import useFollowUser from '../../hooks/useFollowUser';
+import useFollowUser from '../../hooks/User/useFollowUser';
 import { Link } from 'react-router-dom';
 import { timeAgo } from '../../util/timeAgo';
 
