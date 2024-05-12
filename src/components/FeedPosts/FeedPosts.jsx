@@ -11,15 +11,6 @@ import FeedPost from './FeedPost';
 import useGetFeedPosts from '../../hooks/useGetFeedPosts';
 import useIntersect from '../../hooks/useIntersect';
 
-function getRandomColor() {
-  const letters = '0123456789ABCDEF';
-  let color = '#';
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
-
 function FeedPosts() {
   const {
     data: posts,
@@ -37,10 +28,10 @@ function FeedPosts() {
       }
       observer.observe(entry.target);
     },
-    { threshold: 0.5 }
+    { threshold: 0.45 }
   );
 
-  if (hasNextPage && (isLoading || isFetchingNextPage)) {
+  if (isLoading && (hasNextPage || isFetchingNextPage)) {
     return (
       <Container maxW={'container.sm'} py={10} px={2}>
         {[0, 1, 2].map((_, idx) => (
@@ -71,11 +62,7 @@ function FeedPosts() {
           </Box>
         ))}
       {hasNextPage && (
-        <Box
-          ref={intersectRef}
-          h={'200px'}
-          backgroundColor={getRandomColor()}
-        />
+        <Box ref={intersectRef} h={'400px'} backgroundColor={'transparent'} />
       )}
       {posts?.pages.length === 0 && (
         <Text fontSize={'md'} color={'blue.400'}>

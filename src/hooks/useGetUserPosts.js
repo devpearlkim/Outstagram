@@ -1,53 +1,32 @@
-import { useEffect, useState } from 'react';
-import { usePostStore } from '../store/postStore';
 import useShowToast from './useShowToast';
-import { useUserProfileStore } from '../store/userProfileStore';
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import { firestore } from '../firebase/firebase';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import fetchProfilePosts from '../api/Profile/fetchProfilePosts';
 
-const useGetUserPosts = () => {
+const useGetUserPosts = (userProfileId) => {
   const showToast = useShowToast();
-  const [isLoading, setIsLoading] = useState(true);
-  const { posts, setPosts } = usePostStore();
-  const { userProfile } = useUserProfileStore();
 
-  useEffect(() => {
-    const getPosts = async () => {
-      if (!userProfile) return;
-      setIsLoading(true);
-      setPosts([]);
-
-      try {
-        const q = query(
-          collection(firestore, 'posts'),
-          where('createdBy', '==', userProfile.uid)
-        );
-        const querySnapshot = await getDocs(q);
-
-        const posts = [];
-        querySnapshot.forEach((doc) => {
-          posts.push({ ...doc.data(), id: doc.id });
-        });
-
-        posts.sort((a, b) => b.createdAt - a.createdAt);
-        setPosts(posts);
-      } catch (error) {
-        console.error(error);
+  const { fetchNextPage, hasNextPage, data, isLoading, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ['posts', 'main', userProfileId],
+      queryFn: fetchProfilePosts,
+      retry: false,
+      initialPageParam: 0,
+      getNextPageParam: (lastPage) => {
+        if (lastPage) {
+          return lastPage[lastPage.length - 1]?.createdAt;
+        }
+        return null;
+      },
+      onError: () => {
         showToast(
           'Error',
-          '포스트 조회 중 오류 발생, 잠시 후 시도해주세요',
+          '게시글 로딩 중 오류 발생, 잠시 후 시도해주세요',
           'error'
         );
-        setPosts([]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+      },
+    });
 
-    getPosts();
-  }, [userProfile, setPosts, showToast]);
-
-  return { isLoading, posts };
+  return { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage };
 };
 
 export default useGetUserPosts;

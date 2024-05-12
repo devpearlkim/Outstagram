@@ -10,16 +10,12 @@ import {
 import { firestore } from '../../firebase/firebase';
 import { PAGE_SIZE } from '../../../constant';
 
-const fetchFeedPosts = async ({ queryKey, pageParam }) => {
-  const following = queryKey[2];
-
-  if (following.length === 0) {
-    return [];
-  }
+const fetchProfilePosts = async ({ queryKey, pageParam }) => {
+  const userProfileId = queryKey[2];
 
   const q = query(
     collection(firestore, 'posts'),
-    where('createdBy', 'in', following)
+    where('createdBy', '==', userProfileId)
   );
 
   try {
@@ -35,16 +31,16 @@ const fetchFeedPosts = async ({ queryKey, pageParam }) => {
       );
     }
 
-    const feedPosts = [];
+    const profilePosts = [];
     querySnapshot.forEach((doc) => {
-      feedPosts.push({ id: doc.id, ...doc.data() });
+      profilePosts.push({ id: doc.id, ...doc.data() });
     });
 
-    return feedPosts;
+    return profilePosts;
   } catch (error) {
     console.error('게시글 로딩 중 error', error);
     throw error;
   }
 };
 
-export default fetchFeedPosts;
+export default fetchProfilePosts;

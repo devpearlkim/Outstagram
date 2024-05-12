@@ -1,7 +1,7 @@
 import useShowToast from './useShowToast';
 import { useAuthStore } from '../store/authStore';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import fetchFeedPosts from '../api/feedPost/fetchFeedPosts';
+import fetchFeedPosts from '../api/FeedPost/fetchFeedPosts';
 
 const useGetFeedPosts = () => {
   const showToast = useShowToast();
@@ -9,7 +9,7 @@ const useGetFeedPosts = () => {
 
   const { fetchNextPage, hasNextPage, data, isLoading, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: ['posts', 'main', user],
+      queryKey: ['posts', 'main', user.following],
       queryFn: fetchFeedPosts,
       retry: false,
       initialPageParam: 0,
