@@ -7,7 +7,7 @@ const useGetUserPosts = (userProfileId) => {
 
   const { fetchNextPage, hasNextPage, data, isLoading, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: ['posts', 'main', userProfileId],
+      queryKey: ['posts', 'profile', userProfileId],
       queryFn: fetchProfilePosts,
       retry: false,
       initialPageParam: 0,

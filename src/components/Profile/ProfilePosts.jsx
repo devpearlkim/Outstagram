@@ -23,8 +23,6 @@ const ProfilePosts = () => {
     isFetchingNextPage,
   } = useGetUserPosts(userProfile?.uid);
 
-  console.log(userProfile?.uid);
-  console.log(posts?.pages);
   const [intersectRef] = useIntersect(
     async (entry, observer) => {
       observer.unobserve(entry.target);
@@ -77,7 +75,7 @@ const ProfilePosts = () => {
           ref={intersectRef}
           h={'400px'}
           w={'100%'}
-          backgroundColor={'pink'}
+          backgroundColor={'transparent'}
         />
       )}
       {posts?.pages[0].length === 0 && (

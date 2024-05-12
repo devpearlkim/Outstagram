@@ -27,6 +27,8 @@ import { deleteObject, ref } from 'firebase/storage';
 import { firestore, storage } from '../../firebase/firebase';
 import { arrayRemove, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import useShowToast from '../../hooks/useShowToast';
+import { LuPencil } from 'react-icons/lu';
+import CreatePostForm from '../Modals/CreatePostForm';
 
 const ProfilePost = ({ post }) => {
   const showToast = useShowToast();
@@ -35,6 +37,13 @@ const ProfilePost = ({ post }) => {
   const { userProfile, deletePost: deletePostCount } = useUserProfileStore();
   const [isDeleting, setIsDeleting] = useState(false);
   const { deletePost } = usePostStore();
+
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const handleEditPost = () => {
+    setIsEditModalOpen(true);
+    onClose();
+  };
 
   const handleDeletePost = async () => {
     if (!window.confirm('정말 삭제하시겠습니까?')) return;
@@ -151,27 +160,42 @@ const ProfilePost = ({ post }) => {
                     <Avatar
                       src={userProfile.profilePicURL || '/none.jpg'}
                       size={'sm'}
-                      name='jay'
+                      name={userProfile.username}
                     />
                     <Text fontWeight={'bold'} fontSize={12}>
                       {userProfile.username}
                     </Text>
                   </Flex>
                   {user?.uid === userProfile.uid && (
-                    <Button
-                      size={'sm'}
-                      bg={'transparent'}
-                      _hover={{ bg: 'whiteAlpha.300', color: 'red.600' }}
-                      borderRadius={4}
-                      p={1}
-                      onClick={handleDeletePost}
-                      isLoading={isDeleting}
-                    >
-                      <MdDelete size={20} cursor='pointer' />
-                    </Button>
+                    <Flex gap={4}>
+                      <Button
+                        size={'sm'}
+                        bg={'transparent'}
+                        _hover={{ bg: 'whiteAlpha.300', color: 'red.600' }}
+                        borderRadius={4}
+                        p={1}
+                        onClick={handleEditPost}
+                        // isLoading={isEditing}
+                      >
+                        <LuPencil size={20} cursor='pointer' />
+                      </Button>
+                      <Button
+                        size={'sm'}
+                        bg={'transparent'}
+                        _hover={{ bg: 'whiteAlpha.300', color: 'red.600' }}
+                        borderRadius={4}
+                        p={1}
+                        onClick={handleDeletePost}
+                        isLoading={isDeleting}
+                      >
+                        <MdDelete size={20} cursor='pointer' />
+                      </Button>
+                    </Flex>
                   )}
                 </Flex>
                 <Divider my={4} bg={'gray.500'} />
+                <Text mb={4}>{post.caption && post.caption}</Text>
+                <Divider my={4} bg={'gray.8000'} />
                 <VStack
                   w='full'
                   alignItems={'start'}
@@ -182,13 +206,17 @@ const ProfilePost = ({ post }) => {
                     <Comment key={comment.id} comment={comment} />
                   ))}
                 </VStack>
-                <Divider my={4} bg={'gray.8000'} />
                 <PostFooter isProfilePage={true} post={post} />
               </Flex>
             </Flex>
           </ModalBody>
         </ModalContent>
       </Modal>
+      <CreatePostForm
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        postToEdit={post}
+      />
     </>
   );
 };
