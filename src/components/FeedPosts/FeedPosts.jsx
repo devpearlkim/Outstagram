@@ -32,10 +32,8 @@ function FeedPosts() {
   const [intersectRef] = useIntersect(
     async (entry, observer) => {
       observer.unobserve(entry.target);
-      console.log('entryTarget: ', entry.target);
       if (hasNextPage && !isFetchingNextPage) {
         fetchNextPage();
-        console.log('다음 페이지 불러오기');
       }
       observer.observe(entry.target);
     },
@@ -75,7 +73,7 @@ function FeedPosts() {
       {hasNextPage && (
         <Box
           ref={intersectRef}
-          h={'100px'}
+          h={'200px'}
           backgroundColor={getRandomColor()}
         />
       )}
