@@ -21,11 +21,14 @@ import { useState } from 'react';
 import { LuPencil } from 'react-icons/lu';
 import CreatePostForm from './CreatePostForm';
 import useDeletePost from '../../hooks/ProfilePost/useDeletePost';
+import useGetComments from '../../hooks/Comment/useGetComments';
 
 const ProfilePostModal = ({ isOpen, onClose, post }) => {
   const { user } = useAuthStore();
   const { userProfile } = useUserProfileStore();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const { data: comments, isLoading } = useGetComments(post.id);
 
   const handleEditPost = () => {
     setIsEditModalOpen(true);
@@ -122,9 +125,10 @@ const ProfilePostModal = ({ isOpen, onClose, post }) => {
                   maxH={'350px'}
                   overflowY={'auto'}
                 >
-                  {post?.comments.map((comment) => (
-                    <Comment key={comment.id} comment={comment} />
-                  ))}
+                  {comments &&
+                    comments.map((comment) => (
+                      <Comment key={comment.id} comment={comment} />
+                    ))}
                 </VStack>
                 <PostFooter isProfilePage={true} post={post} />
               </Flex>

@@ -12,7 +12,7 @@ import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io';
 import { FaRegComment } from 'react-icons/fa';
 import { useRef, useState } from 'react';
 import { useAuthStore } from '../../store/authStore';
-import usePostComment from '../../hooks/usePostComment';
+import usePostComment from '../../hooks/Comment/usePostComment';
 import useLikePost from '../../hooks/useLikePost';
 import { timeAgo } from '../../util/timeAgo';
 import CommentsModal from '../Modals/CommentsModal';
@@ -24,9 +24,14 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
   const [comment, setComment] = useState('');
   const commentRef = useRef(null);
   const showToast = useShowToast();
-  const { handleLikePost, isLiked, likes } = useLikePost(post);
+  const { handleLike } = useLikePost({ post, userId: user.uid });
   const { createComment, isCommenting } = usePostComment(user.uid);
+  const isLiked = post.likes.includes(user?.uid);
 
+  const handleLikePost = () => {
+    if (!user) return showToast('Error', '로그인 후 이용해주세요', 'error');
+    handleLike();
+  };
   const handleSubmitComment = () => {
     if (!comment.trim(' ').length) {
       showToast('Error', '내용을 입력하세요', 'error');
@@ -56,7 +61,7 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
         </Box>
       </Flex>
       <Text fontWeight={600} fontSize={'sm'}>
-        {likes} likes
+        {post.likes.length} likes
       </Text>
 
       {isProfilePage && (

@@ -10,15 +10,17 @@ import {
   ModalOverlay,
 } from '@chakra-ui/react';
 import Comment from '../Comment/Comment';
-import usePostComment from '../../hooks/usePostComment';
+import usePostComment from '../../hooks/Comment/usePostComment';
 import { useEffect, useRef } from 'react';
 import useShowToast from '../../hooks/useShowToast';
 import { useAuthStore } from '../../store/authStore';
+import useGetComments from '../../hooks/Comment/useGetComments';
 
 const CommentsModal = ({ isOpen, onClose, post }) => {
   const showToast = useShowToast();
   const { user } = useAuthStore();
   const { createComment, isCommenting } = usePostComment(user.uid);
+  const { data: comments, isLoading } = useGetComments(post.id);
 
   const commentRef = useRef(null);
   const commentsContainerRef = useRef(null);
@@ -59,9 +61,10 @@ const CommentsModal = ({ isOpen, onClose, post }) => {
             overflowY={'auto'}
             ref={commentsContainerRef}
           >
-            {post.comments.map((comment, idx) => (
-              <Comment key={idx} comment={comment} />
-            ))}
+            {comments &&
+              comments.map((comment, idx) => (
+                <Comment key={idx} comment={comment} />
+              ))}
           </Flex>
           <form onSubmit={handleSubmitComment} style={{ marginTop: '2rem' }}>
             <Input placeholder='Comment' size={'sm'} ref={commentRef} />

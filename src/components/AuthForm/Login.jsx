@@ -22,8 +22,8 @@ export default function Login() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { signIn, loading } = useLogin();
   const [formData, setFormData] = useState({
-    email: 'abc@test.com',
-    password: 'abc123!',
+    email: 'abcd@test.com',
+    password: 'abcd123!',
   });
   const [resetEmail, setResetEmail] = useState();
 

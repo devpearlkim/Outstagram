@@ -1,6 +1,6 @@
-import useShowToast from './useShowToast';
+import useShowToast from '../useShowToast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { addComment } from '../api/Comment/apiComment';
+import { addComment } from '../../api/Comment/apiComment';
 
 const usePostComment = (userId) => {
   const showToast = useShowToast();
@@ -12,6 +12,7 @@ const usePostComment = (userId) => {
       addComment({ userId, postId, comment }),
     onSuccess: () => {
       showToast('Success', '댓글을 추가했습니다', 'success');
+      queryClient.invalidateQueries({ queryKey: ['comments'] });
       queryClient.invalidateQueries({ queryKey: ['posts'] });
     },
     onError: (error) => {
