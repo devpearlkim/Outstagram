@@ -1,6 +1,6 @@
 import { Avatar, Button, Flex, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import useLogout from '../../hooks/useLogout';
+import useLogout from '../../hooks/Auth/useLogout';
 import { useAuthStore } from '../../store/authStore';
 export default function SuggestedHeader() {
   const { logout, isLoggingOut } = useLogout();

@@ -1,16 +1,14 @@
-import useShowToast from './useShowToast';
-import { useAuthStore } from '../store/authStore';
+import useShowToast from '../useShowToast';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import fetchFeedPosts from '../api/feedPost/fetchFeedPosts';
+import fetchProfilePosts from '../../api/Profile/fetchProfilePosts';
 
-const useGetFeedPosts = () => {
+const useGetUserPosts = (userProfileId) => {
   const showToast = useShowToast();
-  const { user } = useAuthStore();
 
   const { fetchNextPage, hasNextPage, data, isLoading, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: ['posts', 'main', user],
-      queryFn: fetchFeedPosts,
+      queryKey: ['posts', 'profile', userProfileId],
+      queryFn: fetchProfilePosts,
       retry: false,
       initialPageParam: 0,
       getNextPageParam: (lastPage) => {
@@ -31,4 +29,4 @@ const useGetFeedPosts = () => {
   return { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage };
 };
 
-export default useGetFeedPosts;
+export default useGetUserPosts;

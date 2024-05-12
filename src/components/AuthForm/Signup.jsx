@@ -2,9 +2,8 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Button, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
 import { useRef, useState } from 'react';
 import { focusInput, updateFormData } from '../../util/form';
-import { useNavigate } from 'react-router-dom';
 import { checkUsernameExists, isValidPassword } from '../../util/validation';
-import useSignupWithEmail from '../../hooks/useSignupWithEmail';
+import useSignupWithEmail from '../../hooks/Auth/useSignupWithEmail';
 import useShowToast from '../../hooks/useShowToast';
 
 export default function Signup() {

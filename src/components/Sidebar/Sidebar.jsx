@@ -3,7 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import SidebarItems from './SidebarItems';
 import { IoLogoInstagram } from 'react-icons/io';
 import { BiLogOut } from 'react-icons/bi';
-import useLogout from '../../hooks/useLogout';
+import useLogout from '../../hooks/Auth/useLogout';
 
 export default function Sidebar() {
   const { logout, isLoggingOut } = useLogout();

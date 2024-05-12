@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useAuthStore } from '../store/authStore';
-import { useUserProfileStore } from '../store/userProfileStore';
-import useShowToast from './useShowToast';
+import { useAuthStore } from '../../store/authStore';
+import { useUserProfileStore } from '../../store/userProfileStore';
+import useShowToast from '../useShowToast';
 import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore';
-import { firestore } from '../firebase/firebase';
+import { firestore } from '../../firebase/firebase';
 
 // 팔로잉/언팔로잉 할 유저아이디 매개변수로 받음
 function useFollowUser(userId) {

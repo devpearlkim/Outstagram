@@ -1,7 +1,7 @@
 import { Box, Image } from '@chakra-ui/react';
 import PostFooter from './PostFooter';
 import PostHeader from './PostHeader';
-import useGetUserProfileById from '../../hooks/useGetUserProfileById';
+import useGetUserProfileById from '../../hooks/User/useGetUserProfileById';
 
 export default function FeedPost({ post }) {
   const { userProfile } = useGetUserProfileById(post.createdBy);
