@@ -1,7 +1,7 @@
 import useShowToast from './useShowToast';
 import { useAuthStore } from '../store/authStore';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import fetchFeedPosts from '../api/fetchFeedPosts';
+import fetchFeedPosts from '../api/feedPost/fetchFeedPosts';
 
 const useGetFeedPosts = () => {
   const showToast = useShowToast();
@@ -14,9 +14,7 @@ const useGetFeedPosts = () => {
       retry: false,
       initialPageParam: 0,
       getNextPageParam: (lastPage) => {
-        console.log('laspage', lastPage);
         if (lastPage) {
-          console.log('laspage', lastPage[lastPage.length - 1]?.createdAt);
           return lastPage[lastPage.length - 1]?.createdAt;
         }
         return null;
