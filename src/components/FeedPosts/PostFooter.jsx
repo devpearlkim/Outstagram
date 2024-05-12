@@ -19,21 +19,21 @@ import CommentsModal from '../Modals/CommentsModal';
 import useShowToast from '../../hooks/useShowToast';
 
 const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
-  const { isCommenting, handlePostComment } = usePostComment();
-  const [comment, setComment] = useState('');
-  const { user } = useAuthStore();
-  const commentRef = useRef(null);
-  const { handleLikePost, isLiked, likes } = useLikePost(post);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { user } = useAuthStore();
+  const [comment, setComment] = useState('');
+  const commentRef = useRef(null);
   const showToast = useShowToast();
+  const { handleLikePost, isLiked, likes } = useLikePost(post);
+  const { createComment, isCommenting } = usePostComment(user.uid);
 
-  const handleSubmitComment = async () => {
-    await handlePostComment(post.id, comment);
+  const handleSubmitComment = () => {
     if (!comment.trim(' ').length) {
       showToast('Error', '내용을 입력하세요', 'error');
       return;
     }
-    showToast('Success', '댓글이 작성되었습니다', 'success');
+
+    createComment({ postId: post.id, comment });
     setComment('');
   };
 

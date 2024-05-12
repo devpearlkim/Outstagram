@@ -1,55 +1,26 @@
-import { useState } from 'react';
 import useShowToast from './useShowToast';
-import { useAuthStore } from '../store/authStore';
-import { usePostStore } from '../store/postStore';
-import {
-  addDoc,
-  arrayUnion,
-  collection,
-  doc,
-  updateDoc,
-} from 'firebase/firestore';
-import { firestore } from '../firebase/firebase';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { addComment } from '../api/Comment/apiComment';
 
-const usePostComment = () => {
-  const [isCommenting, setIsCommenting] = useState(false);
+const usePostComment = (userId) => {
   const showToast = useShowToast();
-  const { user } = useAuthStore();
-  const { addComment } = usePostStore();
 
-  const handlePostComment = async (postId, comment) => {
-    if (isCommenting) return;
-    if (!user)
-      return showToast('Error', '댓글작성은 로그인 후 가능합니다', 'error');
-    setIsCommenting(true);
+  const queryClient = useQueryClient();
 
-    const newComment = {
-      comment,
-      createdAt: Date.now(),
-      createdBy: user.uid,
-      postId,
-    };
+  const { mutate: createComment, isLoading: isCommenting } = useMutation({
+    mutationFn: ({ postId, comment }) =>
+      addComment({ userId, postId, comment }),
+    onSuccess: () => {
+      showToast('Success', '댓글을 추가했습니다', 'success');
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
+    },
+    onError: (error) => {
+      console.error(error);
+      showToast('Error', '댓글 추가 실패, 잠시 후 시도해주세요', 'error');
+    },
+  });
 
-    try {
-      const commentRef = await addDoc(
-        collection(firestore, 'comments'),
-        newComment
-      );
-      const commentId = commentRef.id;
-
-      await updateDoc(doc(firestore, 'posts', postId), {
-        comments: arrayUnion({ ...newComment, id: commentId }),
-      });
-
-      addComment(postId, newComment);
-    } catch (error) {
-      showToast('Error', error.message, 'error');
-    } finally {
-      setIsCommenting(false);
-    }
-  };
-
-  return { isCommenting, handlePostComment };
+  return { createComment, isCommenting };
 };
 
 export default usePostComment;

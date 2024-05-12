@@ -12,14 +12,23 @@ import {
 import Comment from '../Comment/Comment';
 import usePostComment from '../../hooks/usePostComment';
 import { useEffect, useRef } from 'react';
+import useShowToast from '../../hooks/useShowToast';
+import { useAuthStore } from '../../store/authStore';
 
 const CommentsModal = ({ isOpen, onClose, post }) => {
-  const { handlePostComment, isCommenting } = usePostComment();
+  const showToast = useShowToast();
+  const { user } = useAuthStore();
+  const { createComment, isCommenting } = usePostComment(user.uid);
+
   const commentRef = useRef(null);
   const commentsContainerRef = useRef(null);
-  const handleSubmitComment = async (e) => {
+
+  const handleSubmitComment = (e) => {
+    if (!user)
+      return showToast('Error', '댓글작성은 로그인 후 가능합니다', 'error');
     e.preventDefault();
-    await handlePostComment(post.id, commentRef.current.value);
+
+    createComment({ postId: post.id, comment: commentRef.current.value });
     commentRef.current.value = '';
   };
 
