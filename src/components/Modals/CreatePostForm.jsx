@@ -22,19 +22,23 @@ import useShowToast from '../../hooks/useShowToast';
 import usePreviewImg from '../../hooks/usePreviewImg';
 import useCreatePost from '../../hooks/useCreatePost';
 import { useAuthStore } from '../../store/authStore';
+import useEditPost from '../../hooks/useEditPost';
 
 const CreatePostForm = ({ isOpen, onClose, postToEdit = {} }) => {
-  const [caption, setCaption] = useState('');
+  // postToEdit으로 editSession인지 확인
+  const { id: editId, caption: editCaption, imageURL } = postToEdit;
+  const isEditSession = Boolean(editId);
+  if (isEditSession && !editCaption) {
+    onClose();
+  }
+
+  const [caption, setCaption] = useState(editCaption ? editCaption : '');
   const imageRef = useRef(null);
   const { handleImageChange, selectedFile, setSelectedFile } = usePreviewImg();
   const showToast = useShowToast();
   const { user } = useAuthStore();
   const { isCreating, createPost } = useCreatePost(user.uid);
-  const { isEditing, editPost } = useCreatePost(user.uid);
-
-  // postToEdit으로 editSession인지 확인
-  const { id: editId, ...editValues } = postToEdit;
-  const isEditSession = Boolean(editId);
+  const { isEditing, editPost } = useEditPost(user.uid);
 
   const onSubmit = async () => {
     if (!caption.trim(' ').length) {
@@ -42,7 +46,7 @@ const CreatePostForm = ({ isOpen, onClose, postToEdit = {} }) => {
       return;
     }
 
-    if (!selectedFile) {
+    if (!selectedFile && !imageURL) {
       showToast('Error', '이미지를 선택해주세요', 'error');
       return;
     }
@@ -52,7 +56,7 @@ const CreatePostForm = ({ isOpen, onClose, postToEdit = {} }) => {
     } else createPost({ caption, selectedFile });
 
     setSelectedFile(null);
-    setCaption(null);
+    setCaption('');
     onClose();
   };
 
@@ -65,7 +69,6 @@ const CreatePostForm = ({ isOpen, onClose, postToEdit = {} }) => {
         <ModalBody pb={6}>
           <Textarea
             placeholder='내용 작성'
-            defaultValue={postToEdit && postToEdit.caption}
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
             h={300}
@@ -90,14 +93,14 @@ const CreatePostForm = ({ isOpen, onClose, postToEdit = {} }) => {
               이미지 선택
             </Text>
           </Flex>
-          {selectedFile && (
+          {(selectedFile || imageURL) && (
             <Flex
               mt={5}
               w={'full'}
               position={'relative'}
               justifyContent={'center'}
             >
-              <Image src={selectedFile} alt='선택한 이미지파일' />
+              <Image src={selectedFile || imageURL} alt='선택한 이미지파일' />
               <CloseButton
                 position={'absolute'}
                 top={2}

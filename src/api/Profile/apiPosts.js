@@ -17,16 +17,28 @@ export const createEditPost = async (userId, caption, selectedFile, id) => {
     createdBy: userId,
   };
 
-  // posts에 newPost추가, postRef 가져오기
-  const postDocRef = await addDoc(collection(firestore, 'posts'), newPost);
+  let postDocRef;
+  if (id) {
+    // Edit
+    postDocRef = doc(firestore, 'posts', id);
+    await updateDoc(postDocRef, {
+      caption,
+    });
+  } else {
+    // Create
+    postDocRef = await addDoc(collection(firestore, 'posts'), newPost);
+  }
+
   const userDocRef = doc(firestore, 'users', userId);
   const imageRef = ref(storage, `posts/${postDocRef.id}`);
 
   // 유저Ref에서 posts배열에 postDocRef.id추가
   await updateDoc(userDocRef, { posts: arrayUnion(postDocRef.id) });
 
-  // postDocRef에 이미지URL추가
-  await uploadString(imageRef, selectedFile, 'data_url');
-  const downloadURL = await getDownloadURL(imageRef);
-  await updateDoc(postDocRef, { imageURL: downloadURL });
+  if (selectedFile) {
+    // postDocRef에 이미지URL추가
+    await uploadString(imageRef, selectedFile, 'data_url');
+    const downloadURL = await getDownloadURL(imageRef);
+    await updateDoc(postDocRef, { imageURL: downloadURL });
+  }
 };
