@@ -7,7 +7,7 @@ import {
   startAfter,
   where,
 } from 'firebase/firestore';
-import { firestore } from '../firebase/firebase';
+import { firestore } from '../../firebase/firebase';
 const PAGE_SIZE = 1;
 
 const fetchFeedPosts = async ({ queryKey, pageParam }) => {
@@ -31,7 +31,7 @@ const fetchFeedPosts = async ({ queryKey, pageParam }) => {
       );
     } else {
       querySnapshot = await getDocs(
-        query(q, startAfter(pageParam), orderBy('createdAt'), limit(PAGE_SIZE))
+        query(q, orderBy('createdAt'), startAfter(pageParam), limit(PAGE_SIZE))
       );
     }
 
@@ -40,7 +40,7 @@ const fetchFeedPosts = async ({ queryKey, pageParam }) => {
       feedPosts.push({ id: doc.id, ...doc.data() });
     });
 
-    return feedPosts.sort((a, b) => b.createdAt - a.createdAt);
+    return feedPosts;
   } catch (error) {
     console.error('게시글 로딩 중 error', error);
     throw error;

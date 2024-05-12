@@ -7,10 +7,11 @@
 - Vitest
 - Firebase
 - Amplify
+- zustand
+- ReactQuery
 - Chakra UI
 - React
 - JavaScript
-- zustand
 
 ### Deployment Link:
 
@@ -36,10 +37,10 @@ https://www.youtube.com/watch?v=RMScMwY2B6Q
 
 ##### Enhancements needed:
 
-- [] Studying Design Patterns, Drawing Component Trees
+- [v] Studying Design Patterns, Drawing Component Trees
 - [] Transition to TypeScript
 - [v] Learn testing and write test codes
-- [] Cache data with react-query (reduce state management in store, combine hooks)
+- [v] Cache data with react-query (reduce state management in store, combine hooks)
 - [v] Change form validation (image, nickname)
 - [v] Implement password recovery
 - [v] Update user search to onChange (+ update suggestedUser followers)
@@ -132,7 +133,7 @@ TypeScript (5/16 - 5/19):
 
 - [v] 테스트코드 작성
 - [] TS로 전환
-- [] react-query로 데이터 캐싱
+- [v] react-query로 데이터 캐싱
 - [v] 디자인 패턴 공부, 컴포넌트 트리 그리기
 - [v] 폼부분 폼체크 변경 (이미지, 닉네임, 본인)
 - [v] 비밀번호 찾기

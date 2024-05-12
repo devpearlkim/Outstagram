@@ -9,7 +9,16 @@ import {
 } from '@chakra-ui/react';
 import FeedPost from './FeedPost';
 import useGetFeedPosts from '../../hooks/useGetFeedPosts';
-import { useEffect, useState } from 'react';
+import useIntersect from '../../hooks/useIntersect';
+
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
 
 function FeedPosts() {
   const {
@@ -20,16 +29,20 @@ function FeedPosts() {
     isFetchingNextPage,
   } = useGetFeedPosts();
 
-  const [cnt, setCnt] = useState(1);
+  const [intersectRef] = useIntersect(
+    async (entry, observer) => {
+      observer.unobserve(entry.target);
+      console.log('entryTarget: ', entry.target);
+      if (hasNextPage && !isFetchingNextPage) {
+        fetchNextPage();
+        console.log('다음 페이지 불러오기');
+      }
+      observer.observe(entry.target);
+    },
+    { threshold: 0.5 }
+  );
 
-  useEffect(() => {
-    if (!isLoading && !isFetchingNextPage && hasNextPage && cnt < 2) {
-      fetchNextPage();
-      setCnt((prev) => prev + 1);
-    }
-  }, [isLoading, isFetchingNextPage, fetchNextPage, hasNextPage, cnt]);
-
-  if (isLoading) {
+  if (hasNextPage && (isLoading || isFetchingNextPage)) {
     return (
       <Container maxW={'container.sm'} py={10} px={2}>
         {[0, 1, 2].map((_, idx) => (
@@ -50,22 +63,28 @@ function FeedPosts() {
     );
   }
   return (
-    posts?.pages && (
-      <Container maxW={'container.sm'} py={10} px={2}>
-        {posts?.pages.map((page, i) => (
+    <VStack spacing={8} align='stretch'>
+      {posts?.pages &&
+        posts.pages.map((page, i) => (
           <Box key={i}>
             {page.map((post) => (
               <FeedPost key={post.id} post={post} />
             ))}
           </Box>
         ))}
-        {posts.pages.length === 0 && (
-          <Text fontSize={'md'} color={'blue.400'}>
-            다른 유저를 팔로우하고, 게시글을 확인해보세요 :D
-          </Text>
-        )}
-      </Container>
-    )
+      {hasNextPage && (
+        <Box
+          ref={intersectRef}
+          h={'100px'}
+          backgroundColor={getRandomColor()}
+        />
+      )}
+      {posts?.pages.length === 0 && (
+        <Text fontSize={'md'} color={'blue.400'}>
+          다른 유저를 팔로우하고, 게시글을 확인해보세요 :D
+        </Text>
+      )}
+    </VStack>
   );
 }
 
