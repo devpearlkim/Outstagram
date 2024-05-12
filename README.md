@@ -44,8 +44,7 @@ https://www.youtube.com/watch?v=RMScMwY2B6Q
 - [v] Change form validation (image, nickname)
 - [v] Implement password recovery
 - [v] Update user search to onChange (+ update suggestedUser followers)
-- [] Implement optimistic updates with react-query (optimize store for follow/like)
-- [] Implement post editing functionality
+- [v] Implement post editing functionality
 
 ### Project Progress:
 
@@ -116,8 +115,7 @@ Understanding structure(5/7 - 5/8):
 testing(Vitest), React Query (5/9 - 5/15):
 
 - Learn testing and write test codes
-- Applying React Query
-- Optimistic updates with React Query
+- Applying React Query, useMutation
 
 TypeScript (5/16 - 5/19):
 
@@ -138,8 +136,8 @@ TypeScript (5/16 - 5/19):
 - [v] 폼부분 폼체크 변경 (이미지, 닉네임, 본인)
 - [v] 비밀번호 찾기
 - [v] 유저검색 onChange로 변경 (+ suggestedUser 팔로워 업데이트)
-- [] react-query로 optimistic updates(follow/like부분 store최적화 변경)
-- [] 글 수정 기능
+- [v] 글 수정 기능
+- [] 댓글 수정, 삭제
 
 ### 프로젝트 진행상황:
 
@@ -210,8 +208,7 @@ DAY10 :
 테스트코드 작성, React-query 적용 (5/9 - 5/15):
 
 - 테스트코드 배워서 테스트코드 작성
-- React Query 적용
-- 낙관적 업데이트 적용
+- React Query, mutation 적용
 
 TS전환 (5/16 - 5/19):
 
