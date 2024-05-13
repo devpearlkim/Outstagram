@@ -12,17 +12,24 @@ import useGetUserPosts from '../../hooks/ProfilePost/useGetUserPosts';
 import { useUserProfileStore } from '../../store/userProfileStore';
 import useIntersect from '../../hooks/intersection/useIntersect';
 import React from 'react';
+import { useAuthStore } from '../../store/authStore';
+import useGetLikedPosts from '../../hooks/Like/useGetLikedPosts';
 
-const ProfilePosts = () => {
+const ProfilePosts = ({ selectedTab }) => {
+  const { user } = useAuthStore();
   const { userProfile } = useUserProfileStore();
+
   const {
     data: posts,
     isLoading,
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
-  } = useGetUserPosts(userProfile?.uid);
+  } = selectedTab === 'default'
+    ? useGetUserPosts(userProfile?.uid)
+    : useGetLikedPosts(user?.uid);
 
+  console.log('좋아요:', posts);
   const [intersectRef] = useIntersect(
     async (entry, observer) => {
       observer.unobserve(entry.target);

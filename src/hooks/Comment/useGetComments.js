@@ -1,5 +1,4 @@
 import useShowToast from '../useShowToast';
-import { useAuthStore } from '../../store/authStore';
 import { useQuery } from '@tanstack/react-query';
 import { fetchComments } from '../../api/Comment/apiComment';
 

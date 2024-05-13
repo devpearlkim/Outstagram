@@ -46,12 +46,10 @@ export const fetchComments = async ({ queryKey }) => {
   //   return [];
   // }
 
-  console.log(queryKey);
   const q = query(
     collection(firestore, 'comments'),
     where('postId', '==', postId)
   );
-  console.log(q);
 
   const querySnapshot = await getDocs(query(q));
 
@@ -60,6 +58,5 @@ export const fetchComments = async ({ queryKey }) => {
     comments.push({ id: doc.id, ...doc.data() });
   });
 
-  console.log(comments);
   return comments;
 };
