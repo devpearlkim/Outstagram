@@ -1,7 +1,11 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
-import { BsGrid3X3, BsSuitHeart } from 'react-icons/bs';
+import { BsGrid3X3, BsSuitHeart, BsSuitHeartFill } from 'react-icons/bs';
 
-function ProfileTabs() {
+function ProfileTabs({ selectedTab, onTabChange }) {
+  const handleTabChange = (tab) => {
+    onTabChange(tab);
+  };
+
   return (
     <Flex
       w={'full'}
@@ -11,11 +15,12 @@ function ProfileTabs() {
       fontWeight={'bold'}
     >
       <Flex
-        borderTop={'1px solid white'}
+        borderTop={`${selectedTab === 'default' ? '2px solid white' : ''}`}
         alignItems={'center'}
         p='3'
         gap={1}
         cursor={'pointer'}
+        onClick={() => handleTabChange('default')}
       >
         <Box fontSize={20}>
           <BsGrid3X3 />
@@ -24,9 +29,20 @@ function ProfileTabs() {
           Posts
         </Text>
       </Flex>
-      <Flex alignItems={'center'} p='3' gap={1} cursor={'pointer'}>
+      <Flex
+        borderTop={selectedTab === 'likes' ? '2px solid white' : ''}
+        alignItems={'center'}
+        p='3'
+        gap={1}
+        cursor={'pointer'}
+        onClick={() => handleTabChange('likes')}
+      >
         <Box fontSize={20}>
-          <BsSuitHeart fontWeight={'bold'} />
+          {selectedTab === 'likes' ? (
+            <BsSuitHeartFill fontWeight={'bold'} />
+          ) : (
+            <BsSuitHeart fontWeight={'bold'} />
+          )}
         </Box>
         <Text fontSize={12} display={{ base: 'none', sm: 'block' }}>
           Likes

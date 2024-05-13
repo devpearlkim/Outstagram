@@ -13,10 +13,15 @@ import ProfilePosts from '../../components/Profile/ProfilePosts';
 import { useParams } from 'react-router-dom';
 import useGetUserProfileByUsername from '../../hooks/User/useGetUserProfileByUsername';
 import { Link as RouterLink } from 'react-router-dom';
+import { useState } from 'react';
 
 const ProfilePage = () => {
   const { username } = useParams();
   const { isLoading, userProfile } = useGetUserProfileByUsername(username);
+  const [selectedTab, setSelectedTab] = useState('default');
+  const handleTabChange = (tab) => {
+    setSelectedTab(tab);
+  };
 
   const userNotFound = !isLoading && !userProfile;
   if (userNotFound) return <UserNotFound />;
@@ -42,8 +47,8 @@ const ProfilePage = () => {
         borderColor={'whiteAlpha.300'}
         direction={'column'}
       >
-        <ProfileTabs />
-        <ProfilePosts />
+        <ProfileTabs selectedTab={selectedTab} onTabChange={handleTabChange} />
+        <ProfilePosts selectedTab={selectedTab} />
       </Flex>
     </Container>
   );

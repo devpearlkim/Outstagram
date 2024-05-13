@@ -13,7 +13,7 @@ import { FaRegComment } from 'react-icons/fa';
 import { useRef, useState } from 'react';
 import { useAuthStore } from '../../store/authStore';
 import usePostComment from '../../hooks/Comment/usePostComment';
-import useLikePost from '../../hooks/useLikePost';
+import useLikePost from '../../hooks/Like/useLikePost';
 import { timeAgo } from '../../util/timeAgo';
 import CommentsModal from '../Modals/CommentsModal';
 import useShowToast from '../../hooks/useShowToast';
@@ -24,7 +24,7 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
   const [comment, setComment] = useState('');
   const commentRef = useRef(null);
   const showToast = useShowToast();
-  const { handleLike } = useLikePost({ post, userId: user.uid });
+  const { handleLike } = useLikePost({ post, user });
   const { createComment, isCommenting } = usePostComment(user.uid);
   const isLiked = post.likes.includes(user?.uid);
 
