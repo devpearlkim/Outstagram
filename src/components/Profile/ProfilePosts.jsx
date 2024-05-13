@@ -27,9 +27,8 @@ const ProfilePosts = ({ selectedTab }) => {
     isFetchingNextPage,
   } = selectedTab === 'default'
     ? useGetUserPosts(userProfile?.uid)
-    : useGetLikedPosts(user?.uid);
+    : useGetLikedPosts(userProfile?.uid);
 
-  console.log('좋아요:', posts);
   const [intersectRef] = useIntersect(
     async (entry, observer) => {
       observer.unobserve(entry.target);
@@ -87,7 +86,11 @@ const ProfilePosts = ({ selectedTab }) => {
       )}
       {posts?.pages[0].length === 0 && (
         <Flex flexDir='column' textAlign={'center'} mx={'auto'} mt={10}>
-          <Text fontSize={'lg'}>작성글이 없습니다</Text>
+          <Text fontSize={'lg'}>
+            {selectedTab === 'default'
+              ? '작성글이 없습니다'
+              : '좋아요 한 글이 없습니다'}
+          </Text>
         </Flex>
       )}
     </>
