@@ -42,9 +42,6 @@ export const deleteComment = async ({ postId, commentId }) => {
 
 export const fetchComments = async ({ queryKey }) => {
   const postId = queryKey[1];
-  // if (!postId) {
-  //   return [];
-  // }
 
   const q = query(
     collection(firestore, 'comments'),

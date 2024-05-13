@@ -28,7 +28,7 @@ const ProfilePostModal = ({ isOpen, onClose, post }) => {
   const { userProfile } = useUserProfileStore();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-  const { data: comments, isLoading } = useGetComments(post.id);
+  const { data: comments } = useGetComments(post.id);
 
   const handleEditPost = () => {
     setIsEditModalOpen(true);
@@ -39,7 +39,6 @@ const ProfilePostModal = ({ isOpen, onClose, post }) => {
 
   const handleDeletePost = () => {
     if (!window.confirm('정말 삭제하시겠습니까?')) return;
-    // console.log(post.id);
     deletePost(post.id);
   };
 
