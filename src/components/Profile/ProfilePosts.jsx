@@ -29,7 +29,6 @@ const ProfilePosts = ({ selectedTab }) => {
     ? useGetUserPosts(userProfile?.uid)
     : useGetLikedPosts(userProfile?.uid);
 
-  console.log('좋아요:', posts);
   const [intersectRef] = useIntersect(
     async (entry, observer) => {
       observer.unobserve(entry.target);
