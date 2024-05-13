@@ -4,36 +4,36 @@ import useShowToast from '../useShowToast';
 import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 import { firestore } from '../../firebase/firebase';
 
-const useGetFollowers = () => {
+const useGetFollowing = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [followUsers, setFollowUsers] = useState([]);
+  const [followingUsers, setFollowingUsers] = useState([]);
   const { user } = useAuthStore();
   const showToast = useShowToast();
 
   useEffect(() => {
-    const getFollow = async () => {
+    const getFollowings = async () => {
       setIsLoading(true);
       try {
         const usersRef = collection(firestore, 'users');
         const q = query(
           usersRef,
-          where('uid', 'in', user.followers),
+          where('uid', 'in', user.following),
           orderBy('uid')
         );
 
         const querySnapshot = await getDocs(q);
-        const followers = [];
+        const users = [];
 
         querySnapshot.forEach((doc) => {
-          followers.push({ ...doc.data(), id: doc.id });
+          users.push({ ...doc.data(), id: doc.id });
         });
 
-        setFollowUsers(followers);
+        setFollowingUsers(users);
       } catch (error) {
         console.error(error);
         showToast(
           'Error',
-          'follower 목록 조회 실패, 잠시후 시도해주세요',
+          'following목록 조회 실패, 잠시후 시도해주세요',
           'error'
         );
       } finally {
@@ -41,10 +41,10 @@ const useGetFollowers = () => {
       }
     };
 
-    if (user) getFollow();
+    if (user) getFollowings();
   }, [user, showToast]);
 
-  return { isLoading, followUsers };
+  return { isLoading, followingUsers };
 };
 
-export default useGetFollowers;
+export default useGetFollowing;

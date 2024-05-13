@@ -11,8 +11,11 @@ import { useUserProfileStore } from '../../store/userProfileStore';
 import { useAuthStore } from '../../store/authStore';
 import EditProfile from './EditProfile';
 import useFollowUser from '../../hooks/User/useFollowUser';
-import UserModal from '../Modals/UserModal';
-import { useState } from 'react';
+import FollowerModal from '../Modals/FollowerModal';
+import { useEffect, useState } from 'react';
+import useGetFollowers from '../../hooks/User/useGetFollowers';
+import useGetFollowing from '../../hooks/User/useGetFollowing';
+import FollowingModal from '../Modals/FollowingModal';
 
 export default function ProfileHeader() {
   const { userProfile } = useUserProfileStore();
@@ -20,19 +23,20 @@ export default function ProfileHeader() {
   const ownProfile = user && user.username === userProfile.username;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [openFollowers, setOpenFollowers] = useState(false);
-  const [followMode, setFollowMode] = useState('follower');
+  const [openFollowings, setOpenFollowings] = useState(false);
   const { isUpdating, isFollowing, handleFollowUser } = useFollowUser(
     userProfile?.uid
   );
 
+  const { followUsers } = useGetFollowers();
+  const { followingUsers } = useGetFollowing();
+
   const handleShowFollowers = () => {
     setOpenFollowers(true);
-    setFollowMode('follower');
   };
 
   const handleShowFollowings = () => {
-    setOpenFollowers(true);
-    setFollowMode('following');
+    setOpenFollowings(true);
   };
 
   return (
@@ -103,7 +107,6 @@ export default function ProfileHeader() {
             fontSize={{ base: 'xs', md: 'sm' }}
             pointer={'hover'}
             onClick={handleShowFollowers}
-            p={0}
           >
             <Text as='span' fontWeight={'bold'} mr={1}>
               {userProfile.followers.length}
@@ -114,7 +117,6 @@ export default function ProfileHeader() {
             fontSize={{ base: 'xs', md: 'sm' }}
             pointer={'hover'}
             onClick={handleShowFollowings}
-            p={0}
           >
             <Text as='span' fontWeight={'bold'} mr={1}>
               {userProfile.following.length}
@@ -122,18 +124,18 @@ export default function ProfileHeader() {
             Following
           </Button>
         </Flex>
-        <Flex alignItems={'center'} gap={4}>
-          <Text fontSize={'sm'} fontWeight={'bold'}>
-            {userProfile.username}
-          </Text>
-        </Flex>
         <Text fontSize={'sm'}>{userProfile.bio}</Text>
       </VStack>
       {isOpen && <EditProfile isOpen={isOpen} onClose={onClose} />}
-      <UserModal
-        mode={followMode}
+      <FollowerModal
+        users={followUsers}
         isOpen={openFollowers}
         onClose={() => setOpenFollowers(false)}
+      />
+      <FollowingModal
+        users={followingUsers}
+        isOpen={openFollowings}
+        onClose={() => setOpenFollowings(false)}
       />
     </Flex>
   );
