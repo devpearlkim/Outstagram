@@ -6,6 +6,7 @@ import ProfilePostModal from '../Modals/ProfilePostModal';
 
 const ProfilePost = ({ post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
       <GridItem
@@ -55,7 +56,9 @@ const ProfilePost = ({ post }) => {
           objectFit={'cover'}
         />
       </GridItem>
-      <ProfilePostModal isOpen={isOpen} onClose={onClose} post={post} />
+      {isOpen && (
+        <ProfilePostModal isOpen={isOpen} onClose={onClose} post={post} />
+      )}
     </>
   );
 };

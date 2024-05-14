@@ -12,7 +12,7 @@ import { useAuthStore } from '../../store/authStore';
 import EditProfile from './EditProfile';
 import useFollowUser from '../../hooks/User/useFollowUser';
 import FollowerModal from '../Modals/FollowerModal';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useGetFollowers from '../../hooks/User/useGetFollowers';
 import useGetFollowing from '../../hooks/User/useGetFollowing';
 import FollowingModal from '../Modals/FollowingModal';
