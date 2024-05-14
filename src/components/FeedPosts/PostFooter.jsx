@@ -88,9 +88,9 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
               View all {post.comments.length} comments
             </Text>
           )}
-          {isOpen ? (
+          {isOpen && (
             <CommentsModal isOpen={isOpen} onClose={onClose} post={post} />
-          ) : null}
+          )}
         </>
       )}
 
