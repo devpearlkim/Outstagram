@@ -4,7 +4,7 @@ import { fetchComments } from '../../api/Comment/apiComment';
 
 const useGetComments = (postId) => {
   const showToast = useShowToast();
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, status } = useQuery({
     queryKey: ['comments', postId],
     queryFn: fetchComments,
     onError: () => {
@@ -16,7 +16,7 @@ const useGetComments = (postId) => {
     },
   });
 
-  return { data, isLoading };
+  return { data: data || [], isLoading, status };
 };
 
 export default useGetComments;
