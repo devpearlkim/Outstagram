@@ -25,7 +25,6 @@ test('gives an empty list with no postId provided', async () => {
   expect(isLoading).toBe(true);
 });
 
-// vitest-fetch-mock작동 x (fetch.mockResponseOnce(JSON.stringify({}));)
 const commentsList = [
   { id: 1, comment: '안녕' },
   { id: 2, comment: '안녕2' },

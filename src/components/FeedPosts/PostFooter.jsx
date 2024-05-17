@@ -57,7 +57,7 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
         </Box>
 
         <Box cursor={'pointer'} fontSize={18} onClick={onOpen}>
-          <FaRegComment size={25} />
+          <FaRegComment size={20} />
         </Box>
       </Flex>
       <Text fontWeight={600} fontSize={'sm'}>
