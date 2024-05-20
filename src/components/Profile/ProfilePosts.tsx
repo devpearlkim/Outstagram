@@ -6,18 +6,22 @@ import {
   Skeleton,
   Text,
   VStack,
-} from '@chakra-ui/react';
-import ProfilePost from './ProfilePost';
-import useGetUserPosts from '../../hooks/ProfilePost/useGetUserPosts';
-import { useUserProfileStore } from '../../store/userProfileStore';
-import useIntersect from '../../hooks/intersection/useIntersect';
-import React from 'react';
-import { useAuthStore } from '../../store/authStore';
-import useGetLikedPosts from '../../hooks/Like/useGetLikedPosts';
+} from '@chakra-ui/react'
+import ProfilePost from './ProfilePost'
+import useGetUserPosts from '../../hooks/ProfilePost/useGetUserPosts'
+import { useUserProfileStore } from '../../store/userProfileStore'
+import useIntersect from '../../hooks/intersection/useIntersect'
+import React from 'react'
+import { useAuthStore } from '../../store/authStore'
+import useGetLikedPosts from '../../hooks/Like/useGetLikedPosts'
 
-const ProfilePosts = ({ selectedTab }) => {
-  const { user } = useAuthStore();
-  const { userProfile } = useUserProfileStore();
+type ProfilePostsProp = {
+  selectedTab: string
+}
+
+const ProfilePosts = ({ selectedTab }: ProfilePostsProp) => {
+  const { user } = useAuthStore()
+  const { userProfile } = useUserProfileStore()
 
   const {
     data: posts,
@@ -27,18 +31,20 @@ const ProfilePosts = ({ selectedTab }) => {
     isFetchingNextPage,
   } = selectedTab === 'default'
     ? useGetUserPosts(userProfile?.uid)
-    : useGetLikedPosts(userProfile?.uid);
+    : useGetLikedPosts(userProfile?.uid)
 
-  const [intersectRef] = useIntersect(
+  const intersectRef: React.Dispatch<
+    React.SetStateAction<HTMLDivElement | null>
+  > = useIntersect(
     async (entry, observer) => {
-      observer.unobserve(entry.target);
+      observer.unobserve(entry.target)
       if (hasNextPage && !isFetchingNextPage) {
-        fetchNextPage();
+        fetchNextPage()
       }
-      observer.observe(entry.target);
+      observer.observe(entry.target)
     },
-    { threshold: 0.45 }
-  );
+    { threshold: 0.45 },
+  )
 
   if (isLoading || (hasNextPage && isFetchingNextPage)) {
     return (
@@ -46,12 +52,12 @@ const ProfilePosts = ({ selectedTab }) => {
         {[0, 1, 2].map((_, idx) => (
           <VStack key={idx} alignItems={'flex-start'} gap={4}>
             <Skeleton w={'full'} aspectRatio={1 / 1}>
-              <Box h='300px'>contents wrapped</Box>
+              <Box h="300px">contents wrapped</Box>
             </Skeleton>
           </VStack>
         ))}
       </React.Fragment>
-    );
+    )
   }
 
   return (
@@ -85,7 +91,7 @@ const ProfilePosts = ({ selectedTab }) => {
         />
       )}
       {posts?.pages[0].length === 0 && (
-        <Flex flexDir='column' textAlign={'center'} mx={'auto'} mt={10}>
+        <Flex flexDir="column" textAlign={'center'} mx={'auto'} mt={10}>
           <Text fontSize={'lg'}>
             {selectedTab === 'default'
               ? '작성글이 없습니다'
@@ -94,7 +100,7 @@ const ProfilePosts = ({ selectedTab }) => {
         </Flex>
       )}
     </>
-  );
-};
+  )
+}
 
-export default ProfilePosts;
+export default ProfilePosts

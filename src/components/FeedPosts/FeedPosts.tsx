@@ -6,10 +6,10 @@ import {
   SkeletonCircle,
   Text,
   VStack,
-} from '@chakra-ui/react';
-import FeedPost from './FeedPost';
-import useGetFeedPosts from '../../hooks/FeedPosts/useGetFeedPosts';
-import useIntersect from '../../hooks/intersection/useIntersect';
+} from '@chakra-ui/react'
+import FeedPost from './FeedPost'
+import useGetFeedPosts from '../../hooks/FeedPosts/useGetFeedPosts'
+import useIntersect from '../../hooks/intersection/useIntersect'
 
 function FeedPosts() {
   const {
@@ -18,18 +18,20 @@ function FeedPosts() {
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
-  } = useGetFeedPosts();
+  } = useGetFeedPosts()
 
-  const [intersectRef] = useIntersect(
+  const intersectRef: React.Dispatch<
+    React.SetStateAction<HTMLDivElement | null>
+  > = useIntersect(
     async (entry, observer) => {
-      observer.unobserve(entry.target);
+      observer.unobserve(entry.target)
       if (hasNextPage && !isFetchingNextPage) {
-        fetchNextPage();
+        fetchNextPage()
       }
-      observer.observe(entry.target);
+      observer.observe(entry.target)
     },
-    { threshold: 0.45 }
-  );
+    { threshold: 0.45 },
+  )
 
   if (isLoading && (hasNextPage || isFetchingNextPage)) {
     return (
@@ -49,10 +51,10 @@ function FeedPosts() {
           </VStack>
         ))}
       </Container>
-    );
+    )
   }
   return (
-    <VStack spacing={8} align='stretch'>
+    <VStack spacing={8} align="stretch">
       {posts?.pages &&
         posts.pages.map((page, i) => (
           <Box key={i}>
@@ -70,7 +72,7 @@ function FeedPosts() {
         </Text>
       )}
     </VStack>
-  );
+  )
 }
 
-export default FeedPosts;
+export default FeedPosts
