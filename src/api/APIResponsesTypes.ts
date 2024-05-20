@@ -25,18 +25,9 @@ export interface Post {
 }
 
 export interface Comment {
+  id: string
   createdBy: string
   comment: string
   postId: string
   createdAt: number
-}
-
-export interface UserAPIResponse {
-  data: User[]
-  isLoading: boolean
-  fetchNextPage: (
-    options?: FetchNextPageOptions,
-  ) => Promise<UseInfiniteQueryResult>
-  hasNextPage: boolean
-  isFetchingNextPage: boolean
 }
