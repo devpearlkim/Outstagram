@@ -17,6 +17,8 @@ import { useState } from 'react'
 
 const ProfilePage = () => {
   const { username } = useParams()
+  if (!username) return <UserNotFound />
+
   const { isLoading, userProfile } = useGetUserProfileByUsername(username)
   const [selectedTab, setSelectedTab] = useState('default')
   const handleTabChange = (tab: string) => {

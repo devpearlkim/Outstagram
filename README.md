@@ -1,4 +1,4 @@
-# 인스타그램 클론 sns (2024/04/23 ~ 2024/05/20 )
+# 인스타그램 클론 sns (2024/04/23 ~ 2024/05/23 )
 
 ![컴포넌트트리](https://github.com/devpearlkim/Outstagram/assets/167426229/ac4fdc01-cf6c-4710-99c7-5dfd8c1d69bb)
 
@@ -31,13 +31,13 @@ https://www.youtube.com/watch?v=RMScMwY2B6Q
 
 #### Complete basic functionalities while watching lectures + Identify areas for improvement and enhance them
 
-#### STEP2 (2024/05/05 - 2024/05/20)
+#### STEP2 (2024/05/05 - 2024/05/23)
 
 #### Enhancement, additional features
 
 ##### Enhancements needed:
 
-- [] Transition to TypeScript  
+- [] Transition to TypeScript
 - [v] Studying Design Patterns, Drawing Component Trees
 - [v] Learn testing and write test codes
 - [v] Cache data with react-query (reduce state management in store, combine hooks)
@@ -125,7 +125,7 @@ TypeScript (5/16 - 5/19):
 
 #### STEP1 강의 보며 기본기능 완성 (2024/04/23 - 2024/05/03)
 
-#### STEP2 보완, 추가기능 (2024/05/05 - 2024/05/20)
+#### STEP2 보완, 추가기능 (2024/05/05 - 2024/05/23)
 
 보완 필요:
 
