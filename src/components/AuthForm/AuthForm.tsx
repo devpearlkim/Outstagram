@@ -1,11 +1,11 @@
-import { Box, Flex, Text, VStack } from '@chakra-ui/react';
-import { useState } from 'react';
-import Login from './Login';
-import Signup from './Signup';
-import GoogleAuth from './GoogleAuth';
+import { Box, Flex, Text, VStack } from '@chakra-ui/react'
+import { useState } from 'react'
+import Login from './Login'
+import Signup from './Signup'
+import GoogleAuth from './GoogleAuth'
 
 export default function AuthForm() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(true)
 
   return (
     <>
@@ -36,7 +36,7 @@ export default function AuthForm() {
       <Box border={'1px solid gray'} borderRadius={4} padding={5}>
         <Flex justifyContent={'center'} alignItems={'center'}>
           <Box mx={2} fontSize={14}>
-            {isLogin ? "Dont't have an accout" : 'Already have an account?'}
+            {isLogin ? "Dont't have an account" : 'Already have an account?'}
           </Box>
           <Box
             onClick={() => setIsLogin(!isLogin)}
@@ -48,5 +48,5 @@ export default function AuthForm() {
         </Flex>
       </Box>
     </>
-  );
+  )
 }

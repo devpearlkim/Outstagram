@@ -13,28 +13,30 @@ import {
   ModalOverlay,
   Tooltip,
   useDisclosure,
-} from '@chakra-ui/react';
-import { FiSearch } from 'react-icons/fi';
-import { useRef } from 'react';
-import useSearchUser from '../../hooks/User/useSearchUser';
-import SuggestedUser from '../SuggestedUsers/SuggestedUser';
+} from '@chakra-ui/react'
+import { FiSearch } from 'react-icons/fi'
+import { FormEvent, useRef } from 'react'
+import useSearchUser from '../../hooks/User/useSearchUser'
+import SuggestedUser from '../SuggestedUsers/SuggestedUser'
 
 const Search = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const searchRef = useRef(null);
-  const { users, isLoading, getUserProfile } = useSearchUser();
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const searchRef = useRef<HTMLInputElement>(null)
+  const { users, isLoading, getUserProfile } = useSearchUser()
 
-  const handleSearchUser = (e) => {
-    e.preventDefault();
-    getUserProfile(searchRef.current.value);
-  };
+  const handleSearchUser = (
+    e: React.FormEvent<HTMLFormElement> | React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    e.preventDefault()
+    getUserProfile(searchRef.current?.value)
+  }
 
   return (
     <>
       <Tooltip
         hasArrow
         label={'Search'}
-        placement='right'
+        placement="right"
         ml={1}
         openDelay={500}
         display={{ base: 'block', md: 'none' }}
@@ -54,7 +56,7 @@ const Search = () => {
         </Flex>
       </Tooltip>
 
-      <Modal isOpen={isOpen} onClose={onClose} motionPreset='slideInLeft'>
+      <Modal isOpen={isOpen} onClose={onClose} motionPreset="slideInLeft">
         <ModalOverlay />
         <ModalContent bg={'black'} border={'1px solid gray'} maxW={'400px'}>
           <ModalHeader>Search user</ModalHeader>
@@ -64,7 +66,7 @@ const Search = () => {
               <FormControl>
                 <FormLabel>Username</FormLabel>
                 <Input
-                  placeholder='검색어 입력'
+                  placeholder="검색어 입력"
                   ref={searchRef}
                   onChange={handleSearchUser}
                 />
@@ -73,7 +75,7 @@ const Search = () => {
               {/* 검색 페이지 분리 필요 */}
               <Flex w={'full'} justifyContent={'flex-end'}>
                 <Button
-                  type='submit'
+                  type="submit"
                   ml={'auto'}
                   size={'sm'}
                   my={4}
@@ -90,7 +92,7 @@ const Search = () => {
         </ModalContent>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default Search;
+export default Search

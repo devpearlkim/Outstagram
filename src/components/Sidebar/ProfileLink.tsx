@@ -1,15 +1,15 @@
-import { Avatar, Box, Link, Tooltip } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
-import { useAuthStore } from '../../store/authStore';
+import { Avatar, Box, Link, Tooltip } from '@chakra-ui/react'
+import { Link as RouterLink } from 'react-router-dom'
+import { useAuthStore } from '../../store/authStore'
 
 const ProfileLink = () => {
-  const { user } = useAuthStore();
+  const { user } = useAuthStore()
 
   return (
     <Tooltip
       hasArrow
       label={'Profile'}
-      placement='right'
+      placement="right"
       ml={1}
       openDelay={500}
       display={{ base: 'block', md: 'none' }}
@@ -34,7 +34,7 @@ const ProfileLink = () => {
         <Box display={{ base: 'none', md: 'block' }}>Profile</Box>
       </Link>
     </Tooltip>
-  );
-};
+  )
+}
 
-export default ProfileLink;
+export default ProfileLink

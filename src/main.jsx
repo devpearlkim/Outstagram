@@ -1,15 +1,15 @@
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import App from './App.jsx'
+import App from './App'
 import './index.css'
 import React from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
 import { extendTheme } from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
-import HomePage from './pages/HomePage/HomePage.jsx'
-import AuthPage from './pages/AuthPage/AuthPage.jsx'
-import NotFound from './components/common/NotFound.jsx'
-import ProfilePage from './pages/ProfilePage/ProfilePage.tsx'
+import HomePage from './pages/HomePage/HomePage'
+import AuthPage from './pages/AuthPage/AuthPage'
+import NotFound from './components/common/NotFound'
+import ProfilePage from './pages/ProfilePage/ProfilePage'
 const styles = {
   global: (props) => ({
     body: {

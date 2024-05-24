@@ -1,43 +1,43 @@
-import { useEffect, useState } from 'react';
-import useShowToast from '../useShowToast';
-import { firestore } from '../../firebase/firebase';
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import { useUserProfileStore } from '../../store/userProfileStore';
+import { useEffect, useState } from 'react'
+import useShowToast from '../useShowToast'
+import { firestore } from '../../firebase/firebase'
+import { collection, getDocs, query, where } from 'firebase/firestore'
+import { useUserProfileStore } from '../../store/userProfileStore'
 
 function useGetUserProfileByUsername(username) {
-  const showToast = useShowToast();
-  const [isLoading, setIsLoading] = useState(true);
-  const { userProfile, setUserProfile } = useUserProfileStore();
+  const showToast = useShowToast()
+  const [isLoading, setIsLoading] = useState(true)
+  const { userProfile, setUserProfile } = useUserProfileStore()
 
   useEffect(() => {
     const getUserProfile = async () => {
-      setIsLoading(true);
+      setIsLoading(true)
       try {
         const q = query(
           collection(firestore, 'users'),
-          where('username', '==', username)
-        );
-        const querySnapShot = await getDocs(q);
+          where('username', '==', username),
+        )
+        const querySnapShot = await getDocs(q)
 
-        if (querySnapShot.empty) return setUserProfile(null);
+        if (querySnapShot.empty) return setUserProfile(null)
 
-        let userDoc;
+        let userDoc
         querySnapShot.forEach((doc) => {
-          userDoc = doc.data();
-        });
+          userDoc = doc.data()
+        })
 
-        setUserProfile(userDoc);
+        setUserProfile(userDoc)
       } catch (error) {
-        showToast('Error', error.message, 'error');
+        showToast('Error', error.message, 'error')
       } finally {
-        setIsLoading(false);
+        setIsLoading(false)
       }
-    };
+    }
 
-    getUserProfile();
-  }, [setUserProfile, showToast, username]);
+    getUserProfile()
+  }, [setUserProfile, showToast, username])
 
-  return { isLoading, userProfile };
+  return { isLoading, userProfile }
 }
 
-export default useGetUserProfileByUsername;
+export default useGetUserProfileByUsername

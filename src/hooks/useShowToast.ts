@@ -4,7 +4,7 @@ import { useCallback } from 'react'
 const useShowToast = () => {
   const toast = useToast()
   const showToast = useCallback(
-    (title, description, status) => {
+    (title: string, description: string, status: 'success' | 'error') => {
       toast({
         title: title,
         description: description,
