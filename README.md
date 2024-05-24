@@ -1,5 +1,6 @@
 # 인스타그램 클론 sns (2024/04/23 ~ 2024/05/23 )
-https://www.notion.so/6ae9bfad8e54456fbba6a7213fc18651
+
+https://www.notion.so/3bb3d09925794b8ba433e058756f308d?pvs=4
 
 ![컴포넌트트리](https://github.com/devpearlkim/Outstagram/assets/167426229/ac4fdc01-cf6c-4710-99c7-5dfd8c1d69bb)
 
