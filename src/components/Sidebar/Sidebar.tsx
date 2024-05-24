@@ -1,15 +1,15 @@
-import { Box, Button, Flex, Link, Text, Tooltip } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
-import SidebarItems from './SidebarItems';
-import { IoLogoInstagram } from 'react-icons/io';
-import { BiLogOut } from 'react-icons/bi';
-import useLogout from '../../hooks/Auth/useLogout';
+import { Box, Button, Flex, Link, Text, Tooltip } from '@chakra-ui/react'
+import { Link as RouterLink } from 'react-router-dom'
+import SidebarItems from './SidebarItems'
+import { IoLogoInstagram } from 'react-icons/io'
+import { BiLogOut } from 'react-icons/bi'
+import useLogout from '../../hooks/Auth/useLogout'
 
 export default function Sidebar() {
-  const { logout, isLoggingOut } = useLogout();
+  const { logout, isLoggingOut } = useLogout()
   const handleLogout = () => {
-    logout();
-  };
+    logout()
+  }
   return (
     <Box
       height={'100vh'}
@@ -43,7 +43,7 @@ export default function Sidebar() {
             bg: 'whiteAlpha.200',
           }}
           w={10}
-          cursor='pointer'
+          cursor="pointer"
         >
           <IoLogoInstagram size={25} />
         </Link>
@@ -54,7 +54,7 @@ export default function Sidebar() {
         <Tooltip
           hasArrow
           label={'Logout'}
-          placement='right'
+          placement="right"
           ml={1}
           openDelay={500}
           display={{ base: 'block', md: 'none' }}
@@ -83,5 +83,5 @@ export default function Sidebar() {
         </Tooltip>
       </Flex>
     </Box>
-  );
+  )
 }

@@ -1,16 +1,16 @@
-import { Box, Flex, Tooltip, useDisclosure } from '@chakra-ui/react';
-import { LuPlusSquare } from 'react-icons/lu';
-import CreatePostForm from '../Modals/CreatePostForm';
+import { Box, Flex, Tooltip, useDisclosure } from '@chakra-ui/react'
+import { LuPlusSquare } from 'react-icons/lu'
+import CreatePostForm from '../Modals/CreatePostForm'
 
 const CreatePost = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
       <Tooltip
         hasArrow
         label={'Create'}
-        placement='right'
+        placement="right"
         ml={1}
         openDelay={500}
         display={{ base: 'block', md: 'none' }}
@@ -31,7 +31,7 @@ const CreatePost = () => {
       </Tooltip>
       <CreatePostForm isOpen={isOpen} onClose={onClose} />
     </>
-  );
-};
+  )
+}
 
-export default CreatePost;
+export default CreatePost

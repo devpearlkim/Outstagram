@@ -15,53 +15,53 @@ import {
   ModalHeader,
   ModalOverlay,
   Stack,
-} from '@chakra-ui/react';
-import { useRef, useState } from 'react';
-import { useAuthStore } from '../../store/authStore';
-import usePreviewImg from '../../hooks/image/usePreviewImg';
-import useEditProfile from '../../hooks/useEditProfile';
-import useShowToast from '../../hooks/useShowToast';
-import { updateFormData } from '../../util/form';
-import { checkUsernameExists } from '../../util/validation';
+} from '@chakra-ui/react'
+import { useRef, useState } from 'react'
+import { useAuthStore } from '../../store/authStore'
+import usePreviewImg from '../../hooks/image/usePreviewImg'
+import useEditProfile from '../../hooks/useEditProfile'
+import useShowToast from '../../hooks/useShowToast'
+import { updateFormData } from '../../util/form'
+import { checkUsernameExists } from '../../util/validation'
 
 const EditProfile = ({ isOpen, onClose }) => {
-  const showToast = useShowToast();
-  const { user } = useAuthStore();
+  const showToast = useShowToast()
+  const { user } = useAuthStore()
   const [formdata, setFormData] = useState({
     username: user.username,
     bio: user.bio,
-  });
-  const [duplicatedUsername, setDuplicateUsername] = useState(false);
+  })
+  const [duplicatedUsername, setDuplicateUsername] = useState(false)
 
-  const { isUpdating, editProfile } = useEditProfile();
-  const fileRef = useRef(null);
-  const { handleImageChange, selectedFile, setSelectedFile } = usePreviewImg();
+  const { isUpdating, editProfile } = useEditProfile()
+  const fileRef = useRef(null)
+  const { handleImageChange, selectedFile, setSelectedFile } = usePreviewImg()
 
   const onChangeInput = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => updateFormData(prevFormData, name, value));
-  };
+    const { name, value } = e.target
+    setFormData((prevFormData) => updateFormData(prevFormData, name, value))
+  }
 
   const handleEditProfile = async () => {
     try {
-      await editProfile(formdata, selectedFile);
-      setSelectedFile(null);
-      onClose();
+      await editProfile(formdata, selectedFile)
+      setSelectedFile(null)
+      onClose()
     } catch (error) {
-      showToast('Error', error.message, 'error');
+      showToast('Error', error.message, 'error')
     }
-  };
+  }
 
   const handleCheckUsername = async () => {
     // 이미 존재하는 닉네임 && 기존 닉네임 아닐시 경고
 
-    const isExistsUsername = await checkUsernameExists(formdata.username);
+    const isExistsUsername = await checkUsernameExists(formdata.username)
     if (isExistsUsername && formdata.username !== user.username) {
-      setDuplicateUsername(true);
+      setDuplicateUsername(true)
     } else {
-      setDuplicateUsername(false);
+      setDuplicateUsername(false)
     }
-  };
+  }
 
   return (
     <>
@@ -92,18 +92,18 @@ const EditProfile = ({ isOpen, onClose }) => {
                   <Stack direction={['column', 'row']} spacing={6}>
                     <Center>
                       <Avatar
-                        size='xl'
+                        size="xl"
                         src={selectedFile || user.profilePicURL || '/none.jpg'}
                         border={'2px solid white '}
                       />
                     </Center>
-                    <Center w='full'>
-                      <Button w='full' onClick={() => fileRef.current.click()}>
+                    <Center w="full">
+                      <Button w="full" onClick={() => fileRef.current.click()}>
                         Edit Profile Picture
                       </Button>
                     </Center>
                     <Input
-                      type='file'
+                      type="file"
                       hidden
                       ref={fileRef}
                       onChange={handleImageChange}
@@ -117,7 +117,7 @@ const EditProfile = ({ isOpen, onClose }) => {
                     placeholder={'Username'}
                     size={'sm'}
                     type={'text'}
-                    name='username'
+                    name="username"
                     value={formdata.username}
                     onChange={onChangeInput}
                     onBlur={handleCheckUsername}
@@ -135,7 +135,7 @@ const EditProfile = ({ isOpen, onClose }) => {
                     placeholder={'Bio'}
                     size={'sm'}
                     type={'text'}
-                    name='bio'
+                    name="bio"
                     value={formdata.bio}
                     onChange={onChangeInput}
                   />
@@ -145,8 +145,8 @@ const EditProfile = ({ isOpen, onClose }) => {
                   <Button
                     bg={'red.400'}
                     color={'white'}
-                    w='full'
-                    size='sm'
+                    w="full"
+                    size="sm"
                     _hover={{ bg: 'red.500' }}
                     onClick={onClose}
                   >
@@ -155,8 +155,8 @@ const EditProfile = ({ isOpen, onClose }) => {
                   <Button
                     bg={'blue.400'}
                     color={'white'}
-                    size='sm'
-                    w='full'
+                    size="sm"
+                    w="full"
                     _hover={{ bg: 'blue.500' }}
                     onClick={handleEditProfile}
                     isLoading={isUpdating}
@@ -170,7 +170,7 @@ const EditProfile = ({ isOpen, onClose }) => {
         </ModalContent>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default EditProfile;
+export default EditProfile

@@ -14,7 +14,15 @@ import {
 import { firestore } from '../../firebase/firebase'
 import { Comment } from '../APIResponsesTypes'
 
-export const addComment = async ({ userId, postId, comment }) => {
+export const addComment = async ({
+  userId,
+  postId,
+  comment,
+}: {
+  userId: string
+  postId: string
+  comment: string
+}) => {
   const newComment = {
     comment,
     createdAt: Date.now(),
@@ -30,7 +38,13 @@ export const addComment = async ({ userId, postId, comment }) => {
   })
 }
 
-export const deleteComment = async ({ postId, commentId }) => {
+export const deleteComment = async ({
+  postId,
+  commentId,
+}: {
+  postId: string
+  commentId: string
+}) => {
   await deleteDoc(doc(firestore, 'comments', commentId))
 
   const postRef = doc(firestore, 'posts', postId)

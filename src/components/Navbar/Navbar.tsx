@@ -1,5 +1,5 @@
-import { Button, Container, Flex, Image, Text } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Button, Container, Flex, Image, Text } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
@@ -13,12 +13,12 @@ const Navbar = () => {
           Outstagram
         </Text>
         <Flex gap={4}>
-          <Link to='/auth'>
+          <Link to="/auth">
             <Button colorScheme={'blue'} size={'sm'}>
               Login
             </Button>
           </Link>
-          <Link to='/auth'>
+          <Link to="/auth">
             <Button variant={'outline'} size={'sm'}>
               Signup
             </Button>
@@ -26,7 +26,7 @@ const Navbar = () => {
         </Flex>
       </Flex>
     </Container>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
